@@ -1057,7 +1057,7 @@
             <div class="contact-item"><span aria-hidden="true">⌖</span><div><strong data-i18n="addressLabel">地址</strong><span data-i18n="address">高雄市岡山區灣裡里灣裡路 196 巷 15 號</span></div></div>
           </div>
         </aside>
-        <form class="contact-form" action="mailto:dh.inte.tw@gmail.com" method="POST" enctype="text/plain">
+        <form class="contact-form" action="mailto:dh.inte.tw@gmail.com" data-mailto="dh.inte.tw@gmail.com">
           <div class="form-grid">
             <div class="field">
               <label for="name" data-i18n="formName">姓名 / 公司</label>
@@ -1906,6 +1906,31 @@
         mobileToggle.setAttribute("aria-expanded", "false");
       });
     });
+
+    const contactForm = document.querySelector(".contact-form");
+    if (contactForm) {
+      contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(contactForm);
+        const name = String(data.get("name") || "").trim();
+        const phone = String(data.get("phone") || "").trim();
+        const email = String(data.get("email") || "").trim();
+        const subject = String(data.get("subject") || "").trim();
+        const message = String(data.get("message") || "").trim();
+        const mailSubject = subject ? "[鼎禾網站詢問] " + subject : "[鼎禾網站詢問]";
+        const mailBody = [
+          "姓名 / 公司：" + name,
+          "電話：" + phone,
+          "Email：" + email,
+          "需求主旨：" + subject,
+          "",
+          "需求內容：",
+          message,
+        ].join("\n");
+        const recipient = contactForm.dataset.mailto || "dh.inte.tw@gmail.com";
+        window.location.href = "mailto:" + recipient + "?subject=" + encodeURIComponent(mailSubject) + "&body=" + encodeURIComponent(mailBody);
+      });
+    }
 
     const savedLanguage = localStorage.getItem("dinghe-language") || "zh";
     languageSelect.value = savedLanguage;
