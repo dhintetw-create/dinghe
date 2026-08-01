@@ -3,382 +3,1868 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>鼎禾整合機電整合有限公司 | 專業配電盤、PLC、實驗設備設計</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>鼎禾機電整合有限公司 | 多語言網站</title>
+  <meta name="description" content="鼎禾機電整合有限公司提供配電盤設計、PLC 規劃、機台配線、客製化線材與工業自動化整合服務。">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap');
-    body { font-family: 'Noto+Sans TC', sans-serif; }
-    .hero-bg {
-      background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1581092334651-ddf26d9a1930?auto=format&fit=crop&q=80&w=1920');
-      background-size: cover;
-      background-position: center;
+    :root {
+      color-scheme: light;
+      --ink: #16202a;
+      --muted: #5d6875;
+      --line: #dce3ea;
+      --panel: #ffffff;
+      --soft: #f3f6f8;
+      --steel: #2d5d78;
+      --steel-dark: #183a52;
+      --amber: #bd8b2c;
+      --green: #237460;
+      --danger: #9f3a38;
+      --shadow: 0 18px 50px rgba(19, 39, 56, 0.13);
+      --radius: 8px;
     }
-    .text-dinghe-blue { color: #1a4a6e; }
-    .bg-dinghe-blue { background-color: #1a4a6e; }
-    .bg-dinghe-gold { background-color: #c5a059; }
-    
-    /* Lightbox Modal */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0;
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--soft);
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button, input, textarea { font: inherit; }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
       top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.9);
-      justify-content: center;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(220, 227, 234, 0.9);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      min-height: 72px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 22px;
       align-items: center;
     }
-    .lightbox.active {
+    .brand {
       display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
     }
-    .lightbox-content {
-      max-width: 90%;
-      max-height: 90%;
-      position: relative;
-    }
-    .lightbox-content img {
-      max-width: 100%;
-      max-height: 90vh;
+    .brand img {
+      width: 50px;
+      height: 50px;
       object-fit: contain;
     }
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 40px;
-      cursor: pointer;
-      z-index: 10000;
+    .brand strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.2;
+      color: var(--steel-dark);
+      white-space: nowrap;
     }
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      font-size: 50px;
+    .brand span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+    .nav-links a {
+      padding: 10px 12px;
+      border-radius: 6px;
+      color: #334151;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .nav-links a:hover { background: #eef3f6; color: var(--steel-dark); }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .lang-select {
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+      color: var(--ink);
+      padding: 0 34px 0 12px;
+      font-weight: 700;
       cursor: pointer;
+    }
+    .btn {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 10px 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease, border 0.18s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--steel); color: white; }
+    .btn-primary:hover { background: var(--steel-dark); }
+    .btn-outline { border-color: rgba(255,255,255,0.72); color: white; }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+    .btn-ghost { border-color: var(--line); color: var(--steel-dark); background: white; }
+
+    .mobile-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--steel-dark);
+      cursor: pointer;
+    }
+    .mobile-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: currentColor;
+    }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      align-items: center;
+      position: relative;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(12, 28, 40, 0.88) 0%, rgba(12, 28, 40, 0.72) 46%, rgba(12, 28, 40, 0.36) 100%),
+        url("images/project1.jpg") center / cover no-repeat;
+    }
+    .hero .container {
+      padding: 72px 0 86px;
+    }
+    .hero-strip .container {
+      padding: 0;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: #f1c76e;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: #f1c76e;
+    }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(40px, 7vw, 78px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+    .hero-copy {
+      max-width: 650px;
+      margin: 24px 0 32px;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: clamp(17px, 2vw, 21px);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .hero-strip {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.28);
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+    }
+    .stat {
+      background: white;
+      padding: 18px;
+      min-height: 88px;
+    }
+    .stat strong {
+      display: block;
+      color: var(--steel-dark);
+      font-size: 22px;
+      line-height: 1.1;
+    }
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    section {
+      padding: 84px 0;
+      background: var(--soft);
+    }
+    section.alt { background: white; }
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.14;
+      color: var(--steel-dark);
+    }
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    #sdgs .section-head h2 {
+      font-size: clamp(28px, 3vw, 38px);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .service {
+      min-height: 250px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: 0 8px 24px rgba(19, 39, 56, 0.06);
+    }
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 6px;
+      background: #edf4f6;
+      color: var(--steel);
+    }
+    .service:nth-child(2) .service-icon { background: #f6f0e6; color: var(--amber); }
+    .service:nth-child(3) .service-icon { background: #eaf4ef; color: var(--green); }
+    .service:nth-child(4) .service-icon { background: #f4eeee; color: var(--danger); }
+    .service h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      color: var(--ink);
+    }
+    .service p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .photo-band {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr 0.9fr;
+      grid-auto-rows: 210px;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .photo-band figure {
+      position: relative;
+      overflow: hidden;
+      min-height: 0;
+      margin: 0;
+      border-radius: var(--radius);
+      background: #d9e1e8;
+      box-shadow: 0 8px 24px rgba(19, 39, 56, 0.08);
+    }
+    .photo-band figure:first-child {
+      grid-row: span 2;
+    }
+    .photo-band img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-band figcaption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 16px;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      background: linear-gradient(180deg, rgba(12, 28, 40, 0), rgba(12, 28, 40, 0.86));
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1.15fr repeat(3, 1fr);
+      grid-auto-rows: 240px;
+      gap: 14px;
+    }
+    .project {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: #d9e1e8;
+      box-shadow: var(--shadow);
+    }
+    .project.large { grid-row: span 2; }
+    .project img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .project:hover img { transform: scale(1.04); }
+    .project figcaption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 22px;
+      color: white;
+      background: linear-gradient(180deg, rgba(12, 28, 40, 0), rgba(12, 28, 40, 0.92));
+    }
+    .project h3 {
+      margin: 0 0 4px;
+      font-size: 20px;
+    }
+    .project p {
+      margin: 0;
+      color: rgba(255,255,255,0.82);
+      font-size: 14px;
+    }
+
+    .sdg-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .sdg-panel {
+      padding: 30px;
+      border-radius: var(--radius);
+      background: var(--steel-dark);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    .sdg-panel h3 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      line-height: 1.18;
+    }
+    .sdg-panel p {
+      margin: 0 0 22px;
+      color: rgba(255,255,255,0.78);
+    }
+    .sdgs-logo {
+      display: block;
+      width: min(68%, 250px);
+      aspect-ratio: 1;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      box-shadow: 0 16px 28px rgba(0, 0, 0, 0.2);
+    }
+    .sdg-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .sdg-list li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+    }
+    .sdg-list strong {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      background: #f1c76e;
+      color: #152432;
+      font-size: 13px;
+    }
+    .sdg-goals {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .sdg-goal {
+      min-height: 150px;
       padding: 20px;
-      user-select: none;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: 0 8px 24px rgba(19, 39, 56, 0.06);
     }
-    .lightbox-prev { left: 20px; }
-    .lightbox-next { right: 20px; }
-    .lightbox-caption {
+    .sdg-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .sdg-goal-logo {
+      width: 74px;
+      height: 74px;
+      flex: 0 0 74px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 3px;
+      padding: 8px;
+      border-radius: 8px;
       color: white;
-      text-align: center;
-      padding: 10px;
-      font-size: 16px;
+      background: var(--sdg-color, var(--green));
+      box-shadow: 0 6px 14px rgba(19, 39, 56, 0.12);
     }
-    .project-img {
-      cursor: pointer;
-      transition: transform 0.3s;
+    .sdg-logo-number {
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 900;
     }
-    .project-img:hover {
-      transform: scale(1.02);
+    .sdg-logo-text {
+      align-self: center;
+      font-size: 7px;
+      line-height: 1.05;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    .sdg-logo-symbol {
+      display: grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      justify-self: end;
+      border-radius: 50%;
+      color: var(--sdg-color, var(--green));
+      background: white;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .sdg-goal strong {
+      display: inline-grid;
+      place-items: center;
+      min-width: 54px;
+      height: 32px;
+      border-radius: 6px;
+      background: #eaf4ef;
+      color: var(--green);
+      font-size: 13px;
+    }
+    .sdg-goal h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: var(--steel-dark);
+    }
+    .sdg-goal p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      counter-reset: step;
+    }
+    .step {
+      position: relative;
+      min-height: 210px;
+      padding: 24px;
+      border-radius: var(--radius);
+      background: var(--steel-dark);
+      color: white;
+      overflow: hidden;
+    }
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      display: block;
+      margin-bottom: 30px;
+      color: #f1c76e;
+      font-weight: 900;
+      font-size: 15px;
+    }
+    .step h3 { margin: 0 0 10px; font-size: 19px; }
+    .step p { margin: 0; color: rgba(255,255,255,0.76); font-size: 14px; }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .contact-panel {
+      padding: 30px;
+      border-radius: var(--radius);
+      background: var(--steel-dark);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    .contact-panel h2 {
+      margin: 0 0 22px;
+      font-size: 32px;
+      line-height: 1.16;
+    }
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .contact-item {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: rgba(255,255,255,0.84);
+      word-break: break-word;
+    }
+    .contact-item strong {
+      display: block;
+      color: white;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+    .contact-form {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--steel-dark);
+      font-size: 13px;
+      font-weight: 900;
+    }
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 12px 13px;
+      background: #fbfcfd;
+      color: var(--ink);
+      outline: none;
+    }
+    textarea { resize: vertical; min-height: 128px; }
+    input:focus, textarea:focus {
+      border-color: var(--steel);
+      box-shadow: 0 0 0 3px rgba(45, 93, 120, 0.14);
+    }
+    .field { margin-bottom: 14px; }
+
+    footer {
+      background: #111b24;
+      color: rgba(255,255,255,0.7);
+      padding: 28px 0;
+      font-size: 13px;
+    }
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        grid-template-columns: auto 1fr auto;
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        padding: 10px 20px 16px;
+        background: white;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 18px 30px rgba(19, 39, 56, 0.1);
+      }
+      .site-header.open .nav-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .mobile-toggle { display: inline-block; }
+      .brand strong { font-size: 16px; }
+      .brand span { display: none; }
+      .hero { min-height: 760px; align-items: start; }
+      .hero .container { padding-top: 62px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .section-head,
+      .sdg-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .photo-band {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 210px;
+      }
+      .photo-band figure:first-child {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+      .project-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 250px;
+      }
+      .project.large { grid-row: span 1; }
+      .process { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 28px, 1180px); }
+      .nav { min-height: 66px; gap: 10px; }
+      .nav-links { top: 66px; grid-template-columns: 1fr !important; }
+      .nav-actions { gap: 6px; }
+      .nav-actions .btn { display: none; }
+      .lang-select {
+        width: 118px;
+        padding-left: 8px;
+        font-size: 13px;
+      }
+      .brand img { width: 42px; height: 42px; }
+      .brand strong { max-width: 126px; white-space: normal; }
+      .hero {
+        min-height: 760px;
+        background:
+          linear-gradient(180deg, rgba(12, 28, 40, 0.9) 0%, rgba(12, 28, 40, 0.72) 100%),
+          url("images/project1.jpg") center / cover no-repeat;
+      }
+      .hero .container { padding: 42px 0 260px; }
+      .hero-strip .container { padding: 0; }
+      .hero-actions .btn { width: 100%; }
+      .hero-strip { position: absolute; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat { padding: 14px; min-height: 78px; }
+      .stat strong { font-size: 18px; }
+      section { padding: 58px 0; }
+      .service-grid,
+      .project-grid,
+      .sdg-goals,
+      .process,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .photo-band {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 220px;
+      }
+      .photo-band figure:first-child {
+        grid-column: span 1;
+      }
+      .project-grid { grid-auto-rows: 240px; }
+      .contact-panel,
+      .contact-form { padding: 22px; }
+      footer .container { display: block; }
+      footer p { margin: 6px 0; }
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
-
-  <!-- Navigation -->
-  <nav class="bg-white shadow-md sticky top-0 z-50">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="text-2xl font-bold text-[#1a4a6e] flex items-center">
-        <img src="dinghe_logo.jpg" alt="鼎禾機電整合 Logo" class="h-12 mr-3">
-        鼎禾機電整合
-      </div>
-      <div class="hidden md:flex space-x-8 font-medium">
-        <a href="#home" class="hover:text-blue-600 transition">首頁</a>
-        <a href="#services" class="hover:text-blue-600 transition">專業服務</a>
-        <a href="#projects" class="hover:text-blue-600 transition">工程實績</a>
-        <a href="#contact" class="hover:text-blue-600 transition">聯絡我們</a>
-      </div>
-      <a href="tel:07-6213334" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition">
-        <i class="fas fa-phone mr-1"></i> 立即諮詢
+<body>
+  <header class="site-header" id="siteHeader">
+    <nav class="container nav" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="DingHe home">
+        <img src="dinghe_logo.jpg" alt="鼎禾機電整合有限公司 Logo">
+        <span>
+          <strong data-i18n="brand">鼎禾機電整合有限公司</strong>
+          <span data-i18n="tagline">配電盤・PLC・工業自動化</span>
+        </span>
       </a>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header id="home" class="hero-bg min-h-screen flex items-center text-white">
-    <div class="container mx-auto px-6 text-center md:text-left">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-        專業機電整合<br><span class="text-[#c5a059]">驅動工業未來</span>
-      </h1>
-      <p class="text-xl mb-10 max-w-2xl text-slate-300">
-        鼎禾機電整合有限公司，深耕高雄岡山，為您提供最精密、最穩定的配電盤設計、PLC 規劃與實驗設備製造服務。
-      </p>
-      <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center md:justify-start">
-        <a href="#services" class="bg-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition">探索服務項目</a>
-        <a href="#projects" class="border border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-slate-900 transition">查看成功案例</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#services" data-i18n="navServices">服務項目</a>
+        <a href="#projects" data-i18n="navProjects">工程實績</a>
+        <a href="#sdgs" data-i18n="navSdgs">SDGs 永續</a>
+        <a href="#process" data-i18n="navProcess">合作流程</a>
+        <a href="#contact" data-i18n="navContact">聯絡我們</a>
       </div>
-    </div>
+      <div class="nav-actions">
+        <select class="lang-select" id="languageSelect" aria-label="Language">
+          <option value="zh">繁中</option>
+          <option value="en">English</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="th">ไทย</option>
+          <option value="es">Español</option>
+        </select>
+        <a class="btn btn-primary" href="tel:076213334" data-i18n="navCta">立即諮詢</a>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
   </header>
 
-  <!-- Services Section -->
-  <section id="services" class="py-20">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-4 text-slate-800">核心技術與服務</h2>
-      <div class="w-20 h-1 bg-blue-600 mx-auto mb-16"></div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Service 1 -->
-        <div class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-2 transition duration-300">
-          <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-bolt text-2xl text-blue-600"></i>
-          </div>
-          <h3 class="text-lg font-bold mb-2">配電盤設計</h3>
-          <p class="text-slate-600 text-sm">盤體佈置到精準，追求極致工藝與安全性。</p>
-        </div>
-        <!-- Service 2 -->
-        <div class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-2 transition duration-300">
-          <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-code text-2xl text-blue-600"></i>
-          </div>
-          <h3 class="text-lg font-bold mb-2">PLC 規劃及設計</h3>
-          <p class="text-slate-600 text-sm">各大品牌 PLC 系統，客製化邏輯程式開發。</p>
-        </div>
-        <!-- Service 3 -->
-        <div class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-2 transition duration-300">
-          <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-flask text-2xl text-blue-600"></i>
-          </div>
-          <h3 class="text-lg font-bold mb-2">實驗設備設計製造</h3>
-          <p class="text-slate-600 text-sm">從概念設計到實體製造，全方位解決方案。</p>
-        </div>
-        <!-- Service 4 -->
-        <div class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-2 transition duration-300">
-          <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-plug text-2xl text-blue-600"></i>
-          </div>
-          <h3 class="text-lg font-bold mb-2">機台線材方案</h3>
-          <p class="text-slate-600 text-sm">標準化線材、連接器預裝，快速部署省時省力。</p>
-        </div>
-        <!-- Service 5 -->
-        <div class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-2 transition duration-300">
-          <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-cogs text-2xl text-green-600"></i>
-          </div>
-          <h3 class="text-lg font-bold mb-2">客製化線材</h3>
-          <p class="text-slate-600 text-sm">各類電子連接器、專業壓著、線材組立加工。</p>
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <p class="eyebrow" data-i18n="heroEyebrow">Kaohsiung Industrial Automation</p>
+        <h1 data-i18n="heroTitle">專業機電整合，讓產線穩定前進。</h1>
+        <p class="hero-copy" data-i18n="heroCopy">鼎禾機電整合有限公司深耕高雄岡山，承接配電盤設計、PLC 規劃、機台配線、線材製作與實驗設備製造，從現場需求到交機測試一起處理。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact" data-i18n="heroPrimary">討論需求</a>
+          <a class="btn btn-outline" href="#projects" data-i18n="heroSecondary">查看工程照片</a>
         </div>
       </div>
-    </div>
-  </section>
+      <div class="hero-strip" aria-label="Company highlights">
+        <div class="container stats">
+          <div class="stat"><strong data-i18n="stat1Value">岡山在地</strong><span data-i18n="stat1Label">快速支援南部工業客戶</span></div>
+          <div class="stat"><strong data-i18n="stat2Value">PLC / HMI</strong><span data-i18n="stat2Label">控制邏輯與人機介面整合</span></div>
+          <div class="stat"><strong data-i18n="stat3Value">配電盤</strong><span data-i18n="stat3Label">盤內配置、配線與標示</span></div>
+          <div class="stat"><strong data-i18n="stat4Value">客製化</strong><span data-i18n="stat4Label">依設備與現場條件設計</span></div>
+        </div>
+      </div>
+    </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-20 bg-slate-100">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-4 text-slate-800 text-center">工程實績</h2>
-      <div class="w-20 h-1 bg-blue-600 mx-auto mb-16"></div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Project 1 -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-          <img src="images/project1.jpg" alt="電控箱工程" class="w-full h-48 object-cover project-img" data-caption="工業電控箱 - I/O模組、端子台、安全模組配置" onclick="openLightbox(this)">
-          <div class="p-5">
-            <h3 class="text-lg font-bold mb-2 text-slate-800">工業電控箱</h3>
-            <p class="text-slate-600 text-sm">I/O模組、端子台、安全模組配置。</p>
-          </div>
+    <section id="services" class="alt">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="servicesTitle">核心服務</h2>
+          <p data-i18n="servicesIntro">從單一配電箱到整套自動化設備，鼎禾把配電、控制、線材與現場整合放在同一張圖上處理，減少溝通落差與返工。</p>
         </div>
-        <!-- Project 2 -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-          <img src="images/project2.jpg" alt="FATEK PLC 控制箱" class="w-full h-48 object-cover project-img" data-caption="FATEK PLC 控制系統 - 永宏 PLC 控制箱配置，整齊與清晰標示" onclick="openLightbox(this)">
-          <div class="p-5">
-            <h3 class="text-lg font-bold mb-2 text-slate-800">FATEK PLC 控制系統</h3>
-            <p class="text-slate-600 text-sm">永宏 PLC 控制箱配置，整齊與清晰標示。</p>
-          </div>
+        <div class="service-grid">
+          <article class="service">
+            <div class="service-icon" aria-hidden="true">⚡</div>
+            <h3 data-i18n="svc1Title">配電盤設計製作</h3>
+            <p data-i18n="svc1Copy">盤體配置、元件選型、端子標示、線槽整理與安全迴路規劃。</p>
+          </article>
+          <article class="service">
+            <div class="service-icon" aria-hidden="true">PLC</div>
+            <h3 data-i18n="svc2Title">PLC / HMI 規劃</h3>
+            <p data-i18n="svc2Copy">控制邏輯、人機畫面、I/O 對點、試車調整與維護支援。</p>
+          </article>
+          <article class="service">
+            <div class="service-icon" aria-hidden="true">🧪</div>
+            <h3 data-i18n="svc3Title">實驗設備製造</h3>
+            <p data-i18n="svc3Copy">依製程需求規劃治具、控制箱、感測與機電整合方案。</p>
+          </article>
+          <article class="service">
+            <div class="service-icon" aria-hidden="true">⛓</div>
+            <h3 data-i18n="svc4Title">機台線材方案</h3>
+            <p data-i18n="svc4Copy">線材組立、端子壓著、連接器預製與現場機台配線。</p>
+          </article>
+          <article class="service">
+            <div class="service-icon" aria-hidden="true">🔧</div>
+            <h3 data-i18n="svc5Title">維修與改機</h3>
+            <p data-i18n="svc5Copy">既有設備故障排查、變頻器更新、感測器更換與控制流程優化。</p>
+          </article>
         </div>
-        <!-- Project 3 -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div class="grid grid-cols-3 gap-1">
-            <img src="images/sand_control1.jpg" alt="巴式滅菌機電控1" class="w-full h-48 object-cover project-img" data-caption="巴式滅菌機電控 - 控制盤外觀" onclick="openLightbox(this)">
-            <img src="images/sand_control2.jpg" alt="巴式滅菌機電控2" class="w-full h-48 object-cover project-img" data-caption="巴式滅菌機電控 - 控制盤全貌" onclick="openLightbox(this)">
-            <img src="images/sand_control3.jpg" alt="巴式滅菌機電控3" class="w-full h-48 object-cover project-img" data-caption="巴式滅菌機電控 - 內部（西門子 PLC + TECO 變頻器）" onclick="openLightbox(this)">
-          </div>
-          <div class="p-5">
-            <h3 class="text-lg font-bold mb-2 text-slate-800">巴式滅菌機電控</h3>
-            <p class="text-slate-600 text-sm">FOTEK 溫控器 + WEINTEK HMI + 西門子 PLC + TECO 變頻器，專業不鏽鋼控制箱。</p>
-          </div>
-        </div>
-        <!-- Project 4 -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div class="w-full h-48 bg-green-100 flex items-center justify-center">
-            <i class="fas fa-sync-alt text-5xl text-green-600"></i>
-          </div>
-          <div class="p-5">
-            <h3 class="text-lg font-bold mb-2 text-slate-800">變頻器更新工程</h3>
-            <p class="text-slate-600 text-sm">變頻器選型、安裝、參數設定服務。</p>
-          </div>
-        </div>
-        <!-- Project 5 -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div class="w-full h-48 bg-yellow-100 flex items-center justify-center">
-            <i class="fas fa-microchip text-5xl text-yellow-600"></i>
-          </div>
-          <div class="p-5">
-            <h3 class="text-lg font-bold mb-2 text-slate-800">半導體設備</h3>
-            <p class="text-slate-600 text-sm">日月光、等半導體設備廠工程。</p>
-          </div>
-        </div>
-        <!-- Project 6 -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div class="w-full h-48 bg-purple-100 flex items-center justify-center">
-            <i class="fas fa-box text-5xl text-purple-600"></i>
-          </div>
-          <div class="p-5">
-            <h3 class="text-lg font-bold mb-2 text-slate-800">傳遞箱工程</h3>
-            <p class="text-slate-600 text-sm">潔淨室傳遞箱完整配置。</p>
-          </div>
+        <div class="photo-band" aria-label="DingHe shop and equipment photos">
+          <figure>
+            <img src="images/terminal-processing-machine.jpg" alt="Terminal processing machine">
+            <figcaption data-i18n="photoBand1">端子加工與機構整合</figcaption>
+          </figure>
+          <figure>
+            <img src="images/wire-feeding-machine.jpg" alt="Wire cutting equipment controls">
+            <figcaption data-i18n="photoBand2">裁線設備</figcaption>
+          </figure>
+          <figure>
+            <img src="images/control-pcb-board.jpg" alt="Control PCB board">
+            <figcaption data-i18n="photoBand3">控制電路板應用</figcaption>
+          </figure>
+          <figure>
+            <img src="images/wire_sample2.jpg" alt="Prepared wire harness sets">
+            <figcaption data-i18n="photoBand4">線材預製與標示</figcaption>
+          </figure>
+          <figure>
+            <img src="images/sand_control2.jpg" alt="Machine control cabinet wiring">
+            <figcaption data-i18n="photoBand5">設備控制配線</figcaption>
+          </figure>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Why Us -->
-  <section class="bg-slate-900 text-white py-20">
-    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl font-bold mb-6">為什麼選擇鼎禾？</h2>
-        <ul class="space-y-4">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-blue-400 mt-1 mr-3"></i>
-            <span><strong>專業技術實力</strong>：具備多項核心機電製造技術。</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-blue-400 mt-1 mr-3"></i>
-            <span><strong>客製化解決方案</strong>：不論多複雜的需求，我們都能為您量身打造。</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-blue-400 mt-1 mr-3"></i>
-            <span><strong>在半耕耘服務</strong>：高雄岡山在地經營，溝通迅速、服務到位。</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-blue-400 mt-1 mr-3"></i>
-            <span><strong>半導體產業經驗</strong>：熟悉日月光、等大廠標準。</span>
-          </li>
-        </ul>
-      </div>
-      <div class="rounded-xl overflow-hidden shadow-2xl">
-        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800" alt="專隊討論" class="w-full">
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-20">
-    <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
-        <div class="bg-blue-900 text-white p-10 md:w-1/3">
-          <h2 class="text-2xl font-bold mb-6">聯絡鼎禾</h2>
-          <div class="space-y-5">
-            <p><i class="fas fa-map-marker-alt mr-3"></i> 高雄市岡山區灣裡路 196 巷 15 號</p>
-            <p><i class="fas fa-phone mr-3"></i> 07-6213334</p>
-                        <p><i class="fas fa-fax mr-3"></i> 07-6215833</p>
-                        <p><i class="fab fa-line mr-3" style="color:#00B900"></i> LINE @948swjri</p>
-            <p><i class="fas fa-envelope mr-3"></i> dh.inte.tw@gmail.com</p>
-          </div>
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="projectsTitle">工程實績</h2>
+          <p data-i18n="projectsIntro">網站先用實際工程照片呈現鼎禾擅長的配電、控制與設備整合樣貌，後續可再補上客戶授權案例與產業分類。</p>
         </div>
-        <div class="p-10 md:w-2/3">
-          <form action="mailto:dh.inte.tw@gmail.com" method="POST" enctype="text/plain" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-bold mb-2">姓名</label>
-                <input type="text" name="name" placeholder="您的姓名" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+        <div class="project-grid">
+          <figure class="project large">
+            <img src="images/project1.jpg" alt="Industrial control panel wiring">
+            <figcaption>
+              <h3 data-i18n="proj1Title">工業電控箱</h3>
+              <p data-i18n="proj1Copy">I/O 模組、端子台與安全模組配置。</p>
+            </figcaption>
+          </figure>
+          <figure class="project">
+            <img src="images/project2.jpg" alt="FATEK PLC control panel">
+            <figcaption>
+              <h3 data-i18n="proj2Title">PLC 控制箱</h3>
+              <p data-i18n="proj2Copy">控制器、端子與線路整合。</p>
+            </figcaption>
+          </figure>
+          <figure class="project">
+            <img src="images/sand_control1.jpg" alt="Sterilizer control cabinet">
+            <figcaption>
+              <h3 data-i18n="proj3Title">不鏽鋼控制箱</h3>
+              <p data-i18n="proj3Copy">食品與實驗設備控制應用。</p>
+            </figcaption>
+          </figure>
+          <figure class="project">
+            <img src="images/wire_sample1.jpg" alt="Custom wire harness">
+            <figcaption>
+              <h3 data-i18n="proj4Title">客製線材</h3>
+              <p data-i18n="proj4Copy">連接器、端子與線材組立。</p>
+            </figcaption>
+          </figure>
+          <figure class="project">
+            <img src="images/sand_control3.jpg" alt="Control cabinet interior">
+            <figcaption>
+              <h3 data-i18n="proj5Title">盤內配置</h3>
+              <p data-i18n="proj5Copy">PLC、變頻器與保護元件整合。</p>
+            </figcaption>
+          </figure>
+          <figure class="project">
+            <img src="images/sand_control2.jpg" alt="Machine control cabinet wiring">
+            <figcaption>
+              <h3 data-i18n="proj6Title">設備控制配線</h3>
+              <p data-i18n="proj6Copy">依設備動作整理控制迴路與盤內配線。</p>
+            </figcaption>
+          </figure>
+          <figure class="project">
+            <img src="images/wire_sample2.jpg" alt="Prepared wire harness sets">
+            <figcaption>
+              <h3 data-i18n="proj7Title">線材預製</h3>
+              <p data-i18n="proj7Copy">批量線材標示、壓著與組裝。</p>
+            </figcaption>
+          </figure>
+          <figure class="project">
+            <img src="images/terminal-processing-machine.jpg" alt="Terminal processing machine with HMI">
+            <figcaption>
+              <h3 data-i18n="proj8Title">端子加工設備</h3>
+              <p data-i18n="proj8Copy">端子壓著、機構調整與 HMI 操作整合。</p>
+            </figcaption>
+          </figure>
+          <figure class="project">
+            <img src="images/wire-feeding-machine.jpg" alt="Wire cutting equipment control panel">
+            <figcaption>
+              <h3 data-i18n="proj9Title">裁線設備</h3>
+              <p data-i18n="proj9Copy">線長設定、裁切流程與操作介面配置。</p>
+            </figcaption>
+          </figure>
+          <figure class="project">
+            <img src="images/control-pcb-board.jpg" alt="Custom control PCB terminal board">
+            <figcaption>
+              <h3 data-i18n="proj10Title">控制電路板</h3>
+              <p data-i18n="proj10Copy">接點分配、端子連接與控制訊號整理。</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="sdgs" class="alt">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="sdgsTitle">鼎禾與 SDGs 永續發展目標</h2>
+          <p data-i18n="sdgsIntro">鼎禾把永續發展落在日常工程：用穩定控制、節能改善、標準化製作與設備延壽，協助工廠提升效率並減少浪費。</p>
+        </div>
+        <div class="sdg-layout">
+          <div class="sdg-panel">
+            <img class="sdgs-logo" src="images/sdgs-logo.svg" alt="SDGs Sustainable Development Goals logo">
+            <h3 data-i18n="sdgsPanelTitle">從工程現場支持永續生產</h3>
+            <p data-i18n="sdgsPanelCopy">我們以可維修、可追蹤、可量產的電控整合方式，讓每一次配電、改機與自動化專案都能留下清楚紀錄。</p>
+            <ul class="sdg-list">
+              <li><strong>01</strong><span data-i18n="sdgsAction1">節能控制與變頻應用，降低設備長期用電。</span></li>
+              <li><strong>02</strong><span data-i18n="sdgsAction2">維修與改機延長設備壽命，減少汰換與廢棄。</span></li>
+              <li><strong>03</strong><span data-i18n="sdgsAction3">標準製線、端子標示與測試流程，減少重工與材料耗損。</span></li>
+            </ul>
+          </div>
+          <div class="sdg-goals" aria-label="SDG goals connected to DingHe work">
+            <article class="sdg-goal">
+              <div class="sdg-tag">
+                <div class="sdg-goal-logo" style="--sdg-color:#fcc30b" aria-label="SDG 7 logo">
+                  <span class="sdg-logo-number">7</span>
+                  <span class="sdg-logo-text" data-i18n="sdg7LogoText">可負擔的潔淨能源</span>
+                  <span class="sdg-logo-symbol">E</span>
+                </div>
+                <strong>SDG 7</strong>
               </div>
-              <div>
-                <label class="block text-sm font-bold mb-2">電話</label>
-                <input type="text" name="phone" placeholder="您的電話" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <h3 data-i18n="sdg7Title">潔淨能源</h3>
+              <p data-i18n="sdg7Copy">透過控制邏輯、變頻器與設備節能規劃，協助客戶降低能源浪費。</p>
+            </article>
+            <article class="sdg-goal">
+              <div class="sdg-tag">
+                <div class="sdg-goal-logo" style="--sdg-color:#a21942" aria-label="SDG 8 logo">
+                  <span class="sdg-logo-number">8</span>
+                  <span class="sdg-logo-text" data-i18n="sdg8LogoText">合適工作與經濟成長</span>
+                  <span class="sdg-logo-symbol">W</span>
+                </div>
+                <strong>SDG 8</strong>
               </div>
-            </div>
-            <div>
-              <label class="block text-sm font-bold mb-2">需求主旨</label>
-              <input type="text" name="subject" placeholder="例如：配電盤諮詢" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
-            </div>
-            <div>
-              <label class="block text-sm font-bold mb-2">訊息內容</label>
-              <textarea name="message" rows="4" placeholder="請描述您的需求..." class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
-            </div>
-            <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition w-full">送出詢問</button>
-          </form>
+              <h3 data-i18n="sdg8Title">合適工作</h3>
+              <p data-i18n="sdg8Copy">重視施工安全、標準作業與技術累積，讓現場工作更穩定。</p>
+            </article>
+            <article class="sdg-goal">
+              <div class="sdg-tag">
+                <div class="sdg-goal-logo" style="--sdg-color:#fd6925" aria-label="SDG 9 logo">
+                  <span class="sdg-logo-number">9</span>
+                  <span class="sdg-logo-text" data-i18n="sdg9LogoText">產業創新與基礎建設</span>
+                  <span class="sdg-logo-symbol">I</span>
+                </div>
+                <strong>SDG 9</strong>
+              </div>
+              <h3 data-i18n="sdg9Title">產業創新</h3>
+              <p data-i18n="sdg9Copy">以自動化、PLC 與機電整合，支援產線升級與設備改善。</p>
+            </article>
+            <article class="sdg-goal">
+              <div class="sdg-tag">
+                <div class="sdg-goal-logo" style="--sdg-color:#bf8b2e" aria-label="SDG 12 logo">
+                  <span class="sdg-logo-number">12</span>
+                  <span class="sdg-logo-text" data-i18n="sdg12LogoText">責任消費與生產</span>
+                  <span class="sdg-logo-symbol">R</span>
+                </div>
+                <strong>SDG 12</strong>
+              </div>
+              <h3 data-i18n="sdg12Title">責任生產</h3>
+              <p data-i18n="sdg12Copy">透過材料控管、線材預製與設備延壽，降低浪費與重複施工。</p>
+            </article>
+            <article class="sdg-goal">
+              <div class="sdg-tag">
+                <div class="sdg-goal-logo" style="--sdg-color:#3f7e44" aria-label="SDG 13 logo">
+                  <span class="sdg-logo-number">13</span>
+                  <span class="sdg-logo-text" data-i18n="sdg13LogoText">氣候行動</span>
+                  <span class="sdg-logo-symbol">C</span>
+                </div>
+                <strong>SDG 13</strong>
+              </div>
+              <h3 data-i18n="sdg13Title">氣候行動</h3>
+              <p data-i18n="sdg13Copy">從節電、減少返工與提高設備效率開始，讓工程服務連結減碳行動。</p>
+            </article>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="bg-slate-100 py-10 border-t">
-    <div class="container mx-auto px-6 text-center text-slate-500 text-sm">
-      <p>© 2026 鼎禾整合機電整合有限公司 版權所有 | 富銳盛精靈 協助設計</p>
+    <section id="process">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="processTitle">合作流程</h2>
+          <p data-i18n="processIntro">用工程語言快速對焦需求，讓報價、製作、測試與交機可以清楚追蹤。</p>
+        </div>
+        <div class="process">
+          <article class="step">
+            <h3 data-i18n="step1Title">需求確認</h3>
+            <p data-i18n="step1Copy">了解設備動作、現場限制、使用元件品牌與交期。</p>
+          </article>
+          <article class="step">
+            <h3 data-i18n="step2Title">方案與報價</h3>
+            <p data-i18n="step2Copy">整理控制架構、材料範圍、施工內容與報價條件。</p>
+          </article>
+          <article class="step">
+            <h3 data-i18n="step3Title">製作與測試</h3>
+            <p data-i18n="step3Copy">完成盤體配線、程式設定、對點與基本功能測試。</p>
+          </article>
+          <article class="step">
+            <h3 data-i18n="step4Title">交機與支援</h3>
+            <p data-i18n="step4Copy">現場調整、操作說明、異常排查與後續維護。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-layout">
+        <aside class="contact-panel">
+          <h2 data-i18n="contactTitle">聯絡鼎禾</h2>
+          <p data-i18n="contactIntro">需要配電盤、PLC、機台配線或設備改機，可以先留下需求，鼎禾會依現場條件協助評估。</p>
+          <div class="contact-list">
+            <div class="contact-item"><span aria-hidden="true">☎</span><div><strong data-i18n="phoneLabel">電話</strong><a href="tel:076213334">07-6213334</a></div></div>
+            <div class="contact-item"><span aria-hidden="true">▣</span><div><strong data-i18n="faxLabel">傳真</strong>07-6215833</div></div>
+            <div class="contact-item"><span aria-hidden="true">@</span><div><strong>Email</strong><a href="mailto:dh.inte.tw@gmail.com">dh.inte.tw@gmail.com</a></div></div>
+            <div class="contact-item"><span aria-hidden="true">LINE</span><div><strong>LINE</strong>@948swjri</div></div>
+            <div class="contact-item"><span aria-hidden="true">⌖</span><div><strong data-i18n="addressLabel">地址</strong><span data-i18n="address">高雄市岡山區灣裡里灣裡路 196 巷 15 號</span></div></div>
+          </div>
+        </aside>
+        <form class="contact-form" action="mailto:dh.inte.tw@gmail.com" method="POST" enctype="text/plain">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name" data-i18n="formName">姓名 / 公司</label>
+              <input id="name" name="name" autocomplete="name" data-i18n-placeholder="formNamePh" placeholder="您的姓名或公司名稱">
+            </div>
+            <div class="field">
+              <label for="phone" data-i18n="formPhone">電話</label>
+              <input id="phone" name="phone" autocomplete="tel" data-i18n-placeholder="formPhonePh" placeholder="方便聯絡的電話">
+            </div>
+          </div>
+          <div class="field">
+            <label for="subject" data-i18n="formSubject">需求主旨</label>
+            <input id="subject" name="subject" data-i18n-placeholder="formSubjectPh" placeholder="例如：配電盤製作 / PLC 程式 / 設備改機">
+          </div>
+          <div class="field">
+            <label for="message" data-i18n="formMessage">需求內容</label>
+            <textarea id="message" name="message" data-i18n-placeholder="formMessagePh" placeholder="請簡述設備、數量、現場條件與希望交期"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit" data-i18n="formSubmit">送出詢問</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p data-i18n="footerCompany">© 2026 鼎禾機電整合有限公司</p>
+      <p data-i18n="footerNote">Industrial electrical integration from Kaohsiung, Taiwan.</p>
     </div>
   </footer>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
-    <span class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1, event)">&#10094;</span>
-    <div class="lightbox-content" onclick="event.stopPropagation()">
-      <img id="lightbox-img" src="" alt="">
-      <div class="lightbox-caption" id="lightbox-caption"></div>
-    </div>
-    <span class="lightbox-nav lightbox-next" onclick="navigateLightbox(1, event)">&#10095;</span>
-  </div>
-
   <script>
-    let currentImages = [];
-    let currentIndex = 0;
-
-    function openLightbox(element) {
-      const lightbox = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      const caption = document.getElementById('lightbox-caption');
-      
-      // Find all project images in the same project card
-      const projectCard = element.closest('.bg-white.rounded-xl');
-      const images = projectCard.querySelectorAll('img.project-img');
-      
-      currentImages = Array.from(images);
-      currentIndex = Array.from(images).indexOf(element);
-      
-      updateLightboxImage();
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightboxImage() {
-      const img = document.getElementById('lightbox-img');
-      const caption = document.getElementById('lightbox-caption');
-      img.src = currentImages[currentIndex].src;
-      caption.textContent = currentImages[currentIndex].getAttribute('data-caption') || '';
-    }
-
-    function closeLightbox(event) {
-      if (event) event.stopPropagation();
-      const lightbox = document.getElementById('lightbox');
-      lightbox.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    function navigateLightbox(direction, event) {
-      if (event) event.stopPropagation();
-      currentIndex += direction;
-      if (currentIndex < 0) currentIndex = currentImages.length - 1;
-      if (currentIndex >= currentImages.length) currentIndex = 0;
-      updateLightboxImage();
-    }
-
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
-      const lightbox = document.getElementById('lightbox');
-      if (lightbox.classList.contains('active')) {
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') navigateLightbox(-1);
-        if (e.key === 'ArrowRight') navigateLightbox(1);
+    const i18n = {
+      zh: {
+        brand: "鼎禾機電整合有限公司",
+        tagline: "配電盤・PLC・工業自動化",
+        navServices: "服務項目",
+        navProjects: "工程實績",
+        navSdgs: "SDGs 永續",
+        navProcess: "合作流程",
+        navContact: "聯絡我們",
+        navCta: "立即諮詢",
+        heroEyebrow: "Kaohsiung Industrial Automation",
+        heroTitle: "專業機電整合，讓產線穩定前進。",
+        heroCopy: "鼎禾機電整合有限公司深耕高雄岡山，承接配電盤設計、PLC 規劃、機台配線、線材製作與實驗設備製造，從現場需求到交機測試一起處理。",
+        heroPrimary: "討論需求",
+        heroSecondary: "查看工程照片",
+        stat1Value: "岡山在地",
+        stat1Label: "快速支援南部工業客戶",
+        stat2Value: "PLC / HMI",
+        stat2Label: "控制邏輯與人機介面整合",
+        stat3Value: "配電盤",
+        stat3Label: "盤內配置、配線與標示",
+        stat4Value: "客製化",
+        stat4Label: "依設備與現場條件設計",
+        servicesTitle: "核心服務",
+        servicesIntro: "從單一配電箱到整套自動化設備，鼎禾把配電、控制、線材與現場整合放在同一張圖上處理，減少溝通落差與返工。",
+        svc1Title: "配電盤設計製作",
+        svc1Copy: "盤體配置、元件選型、端子標示、線槽整理與安全迴路規劃。",
+        svc2Title: "PLC / HMI 規劃",
+        svc2Copy: "控制邏輯、人機畫面、I/O 對點、試車調整與維護支援。",
+        svc3Title: "實驗設備製造",
+        svc3Copy: "依製程需求規劃治具、控制箱、感測與機電整合方案。",
+        svc4Title: "機台線材方案",
+        svc4Copy: "線材組立、端子壓著、連接器預製與現場機台配線。",
+        svc5Title: "維修與改機",
+        svc5Copy: "既有設備故障排查、變頻器更新、感測器更換與控制流程優化。",
+        photoBand1: "端子加工與機構整合",
+        photoBand2: "裁線設備",
+        photoBand3: "控制電路板應用",
+        photoBand4: "線材預製與標示",
+        photoBand5: "設備控制配線",
+        projectsTitle: "工程實績",
+        projectsIntro: "網站先用實際工程照片呈現鼎禾擅長的配電、控制與設備整合樣貌，後續可再補上客戶授權案例與產業分類。",
+        proj1Title: "工業電控箱",
+        proj1Copy: "I/O 模組、端子台與安全模組配置。",
+        proj2Title: "PLC 控制箱",
+        proj2Copy: "控制器、端子與線路整合。",
+        proj3Title: "不鏽鋼控制箱",
+        proj3Copy: "食品與實驗設備控制應用。",
+        proj4Title: "客製線材",
+        proj4Copy: "連接器、端子與線材組立。",
+        proj5Title: "盤內配置",
+        proj5Copy: "PLC、變頻器與保護元件整合。",
+        proj6Title: "設備控制配線",
+        proj6Copy: "依設備動作整理控制迴路與盤內配線。",
+        proj7Title: "線材預製",
+        proj7Copy: "批量線材標示、壓著與組裝。",
+        proj8Title: "端子加工設備",
+        proj8Copy: "端子壓著、機構調整與 HMI 操作整合。",
+        proj9Title: "裁線設備",
+        proj9Copy: "線長設定、裁切流程與操作介面配置。",
+        proj10Title: "控制電路板",
+        proj10Copy: "接點分配、端子連接與控制訊號整理。",
+        sdgsTitle: "鼎禾與 SDGs 永續發展目標",
+        sdgsIntro: "鼎禾把永續發展落在日常工程：用穩定控制、節能改善、標準化製作與設備延壽，協助工廠提升效率並減少浪費。",
+        sdgsPanelTitle: "從工程現場支持永續生產",
+        sdgsPanelCopy: "我們以可維修、可追蹤、可量產的電控整合方式，讓每一次配電、改機與自動化專案都能留下清楚紀錄。",
+        sdgsAction1: "節能控制與變頻應用，降低設備長期用電。",
+        sdgsAction2: "維修與改機延長設備壽命，減少汰換與廢棄。",
+        sdgsAction3: "標準製線、端子標示與測試流程，減少重工與材料耗損。",
+        sdg7LogoText: "可負擔的潔淨能源",
+        sdg8LogoText: "合適工作與經濟成長",
+        sdg9LogoText: "產業創新與基礎建設",
+        sdg12LogoText: "責任消費與生產",
+        sdg13LogoText: "氣候行動",
+        sdg7Title: "潔淨能源",
+        sdg7Copy: "透過控制邏輯、變頻器與設備節能規劃，協助客戶降低能源浪費。",
+        sdg8Title: "合適工作",
+        sdg8Copy: "重視施工安全、標準作業與技術累積，讓現場工作更穩定。",
+        sdg9Title: "產業創新",
+        sdg9Copy: "以自動化、PLC 與機電整合，支援產線升級與設備改善。",
+        sdg12Title: "責任生產",
+        sdg12Copy: "透過材料控管、線材預製與設備延壽，降低浪費與重複施工。",
+        sdg13Title: "氣候行動",
+        sdg13Copy: "從節電、減少返工與提高設備效率開始，讓工程服務連結減碳行動。",
+        processTitle: "合作流程",
+        processIntro: "用工程語言快速對焦需求，讓報價、製作、測試與交機可以清楚追蹤。",
+        step1Title: "需求確認",
+        step1Copy: "了解設備動作、現場限制、使用元件品牌與交期。",
+        step2Title: "方案與報價",
+        step2Copy: "整理控制架構、材料範圍、施工內容與報價條件。",
+        step3Title: "製作與測試",
+        step3Copy: "完成盤體配線、程式設定、對點與基本功能測試。",
+        step4Title: "交機與支援",
+        step4Copy: "現場調整、操作說明、異常排查與後續維護。",
+        contactTitle: "聯絡鼎禾",
+        contactIntro: "需要配電盤、PLC、機台配線或設備改機，可以先留下需求，鼎禾會依現場條件協助評估。",
+        phoneLabel: "電話",
+        faxLabel: "傳真",
+        addressLabel: "地址",
+        address: "高雄市岡山區灣裡里灣裡路 196 巷 15 號",
+        formName: "姓名 / 公司",
+        formNamePh: "您的姓名或公司名稱",
+        formPhone: "電話",
+        formPhonePh: "方便聯絡的電話",
+        formSubject: "需求主旨",
+        formSubjectPh: "例如：配電盤製作 / PLC 程式 / 設備改機",
+        formMessage: "需求內容",
+        formMessagePh: "請簡述設備、數量、現場條件與希望交期",
+        formSubmit: "送出詢問",
+        footerCompany: "© 2026 鼎禾機電整合有限公司",
+        footerNote: "Industrial electrical integration from Kaohsiung, Taiwan."
+      },
+      en: {
+        brand: "DingHe Integrated Electrical Co., Ltd.",
+        tagline: "Control Panels, PLC, Industrial Automation",
+        navServices: "Services",
+        navProjects: "Projects",
+        navSdgs: "SDGs",
+        navProcess: "Process",
+        navContact: "Contact",
+        navCta: "Call Now",
+        heroEyebrow: "Kaohsiung Industrial Automation",
+        heroTitle: "Electrical integration built for stable production.",
+        heroCopy: "DingHe Integrated Electrical is based in Gangshan, Kaohsiung. We provide control panel design, PLC planning, machine wiring, wire harness assembly, and custom industrial equipment integration from site requirements to commissioning.",
+        heroPrimary: "Discuss a Project",
+        heroSecondary: "View Project Photos",
+        stat1Value: "Kaohsiung Based",
+        stat1Label: "Fast support for southern Taiwan factories",
+        stat2Value: "PLC / HMI",
+        stat2Label: "Control logic and interface integration",
+        stat3Value: "Panels",
+        stat3Label: "Layout, wiring, labeling and safety",
+        stat4Value: "Custom Built",
+        stat4Label: "Designed around machines and sites",
+        servicesTitle: "Core Services",
+        servicesIntro: "From one control box to a full automation system, DingHe keeps power distribution, controls, wiring and site integration aligned so projects move with fewer gaps and less rework.",
+        svc1Title: "Control Panel Design",
+        svc1Copy: "Panel layout, component selection, terminal labels, wire ducting and safety circuit planning.",
+        svc2Title: "PLC / HMI Planning",
+        svc2Copy: "Control logic, HMI screens, I/O checks, commissioning and maintenance support.",
+        svc3Title: "Lab Equipment Build",
+        svc3Copy: "Jigs, control boxes, sensors and electromechanical integration based on process needs.",
+        svc4Title: "Machine Wiring",
+        svc4Copy: "Wire harness assembly, terminal crimping, connector preparation and on-site machine wiring.",
+        svc5Title: "Retrofit & Repair",
+        svc5Copy: "Troubleshooting, inverter replacement, sensor updates and process improvements.",
+        photoBand1: "Terminal processing and mechanism integration",
+        photoBand2: "Wire cutting equipment",
+        photoBand3: "Control PCB applications",
+        photoBand4: "Prepared wiring and labels",
+        photoBand5: "Equipment control wiring",
+        projectsTitle: "Project Work",
+        projectsIntro: "Real project photos show the type of panel wiring, controls and machine integration DingHe handles. Customer-approved case details can be added later.",
+        proj1Title: "Industrial Control Panel",
+        proj1Copy: "I/O modules, terminal blocks and safety modules.",
+        proj2Title: "PLC Control Box",
+        proj2Copy: "Controller, terminals and wiring integration.",
+        proj3Title: "Stainless Control Cabinet",
+        proj3Copy: "Control applications for food and lab equipment.",
+        proj4Title: "Custom Harnesses",
+        proj4Copy: "Connectors, terminals and wire assembly.",
+        proj5Title: "Panel Interior",
+        proj5Copy: "PLC, inverter and protection device integration.",
+        proj6Title: "Machine Control Wiring",
+        proj6Copy: "Control circuits and panel wiring arranged around machine actions.",
+        proj7Title: "Prepared Wire Sets",
+        proj7Copy: "Batch wire labeling, crimping and assembly.",
+        proj8Title: "Terminal Processing Machine",
+        proj8Copy: "Terminal crimping, mechanism adjustment and HMI operation integration.",
+        proj9Title: "Wire Cutting Equipment",
+        proj9Copy: "Wire length setup, cutting flow and operator interface layout.",
+        proj10Title: "Control PCB Board",
+        proj10Copy: "Contact distribution, terminal wiring and control signal organization.",
+        sdgsTitle: "DingHe and SDGs",
+        sdgsIntro: "DingHe connects sustainability to everyday engineering through stable controls, energy-saving improvements, standardized wiring and longer equipment life.",
+        sdgsPanelTitle: "Sustainable production from the shop floor",
+        sdgsPanelCopy: "Our control integration work is designed to be maintainable, traceable and repeatable, leaving clear records for panel work, retrofits and automation projects.",
+        sdgsAction1: "Energy-saving controls and inverter applications reduce long-term equipment power use.",
+        sdgsAction2: "Repair and retrofit work extends equipment life and reduces replacement waste.",
+        sdgsAction3: "Standard wiring lists, terminal labels and testing workflows reduce rework and material loss.",
+        sdg7LogoText: "Affordable and Clean Energy",
+        sdg8LogoText: "Decent Work and Economic Growth",
+        sdg9LogoText: "Industry, Innovation and Infrastructure",
+        sdg12LogoText: "Responsible Consumption and Production",
+        sdg13LogoText: "Climate Action",
+        sdg7Title: "Clean Energy",
+        sdg7Copy: "Control logic, inverters and energy-aware equipment planning help customers reduce energy waste.",
+        sdg8Title: "Decent Work",
+        sdg8Copy: "Safer site work, standard procedures and accumulated technical know-how make daily work more stable.",
+        sdg9Title: "Industry Innovation",
+        sdg9Copy: "Automation, PLC work and electromechanical integration support line upgrades and equipment improvement.",
+        sdg12Title: "Responsible Production",
+        sdg12Copy: "Material control, prepared wiring and equipment life extension reduce waste and repeated work.",
+        sdg13Title: "Climate Action",
+        sdg13Copy: "Energy savings, less rework and higher equipment efficiency connect engineering services to carbon reduction.",
+        processTitle: "How We Work",
+        processIntro: "We use engineering language to align requirements, quotation scope, fabrication, testing and delivery.",
+        step1Title: "Requirement Check",
+        step1Copy: "Machine actions, site limits, preferred components and delivery schedule.",
+        step2Title: "Plan & Quote",
+        step2Copy: "Control structure, material scope, work content and quotation terms.",
+        step3Title: "Build & Test",
+        step3Copy: "Panel wiring, program setup, I/O checks and basic function testing.",
+        step4Title: "Commission & Support",
+        step4Copy: "On-site adjustment, operator guidance, troubleshooting and maintenance.",
+        contactTitle: "Contact DingHe",
+        contactIntro: "For control panels, PLC work, machine wiring or equipment retrofit, send the requirement and we will assess it based on your site conditions.",
+        phoneLabel: "Phone",
+        faxLabel: "Fax",
+        addressLabel: "Address",
+        address: "No. 15, Ln. 196, Wanli Rd., Gangshan Dist., Kaohsiung City, Taiwan",
+        formName: "Name / Company",
+        formNamePh: "Your name or company",
+        formPhone: "Phone",
+        formPhonePh: "A phone number we can reach",
+        formSubject: "Project Subject",
+        formSubjectPh: "Control panel / PLC / retrofit",
+        formMessage: "Details",
+        formMessagePh: "Machine, quantity, site condition and target schedule",
+        formSubmit: "Send Inquiry",
+        footerCompany: "© 2026 DingHe Integrated Electrical Co., Ltd.",
+        footerNote: "Industrial electrical integration from Kaohsiung, Taiwan."
+      },
+      ja: {
+        brand: "鼎禾機電整合有限公司",
+        tagline: "配電盤・PLC・産業自動化",
+        navServices: "サービス",
+        navProjects: "実績",
+        navSdgs: "SDGs",
+        navProcess: "流れ",
+        navContact: "お問い合わせ",
+        navCta: "相談する",
+        heroEyebrow: "Kaohsiung Industrial Automation",
+        heroTitle: "安定した生産を支える機電統合。",
+        heroCopy: "鼎禾機電整合有限公司は高雄岡山を拠点に、配電盤設計、PLC 計画、機械配線、ハーネス製作、実験設備製造を、現場要件から試運転まで対応します。",
+        heroPrimary: "相談する",
+        heroSecondary: "実績写真を見る",
+        stat1Value: "高雄拠点",
+        stat1Label: "南台湾の工場を迅速に支援",
+        stat2Value: "PLC / HMI",
+        stat2Label: "制御ロジックと画面統合",
+        stat3Value: "配電盤",
+        stat3Label: "配置、配線、表示、安全設計",
+        stat4Value: "カスタム",
+        stat4Label: "設備と現場条件に合わせて設計",
+        servicesTitle: "主なサービス",
+        servicesIntro: "単体の制御箱から自動化設備まで、配電、制御、配線、現場統合を一体で考え、手戻りを減らします。",
+        svc1Title: "配電盤設計製作",
+        svc1Copy: "盤内配置、部品選定、端子表示、配線整理、安全回路計画。",
+        svc2Title: "PLC / HMI 計画",
+        svc2Copy: "制御ロジック、HMI 画面、I/O 確認、試運転と保守支援。",
+        svc3Title: "実験設備製作",
+        svc3Copy: "プロセスに応じた治具、制御箱、センサー、機電統合。",
+        svc4Title: "機械配線",
+        svc4Copy: "ハーネス組立、端子圧着、コネクタ準備、現場配線。",
+        svc5Title: "修理と改造",
+        svc5Copy: "故障解析、インバータ交換、センサー更新、制御改善。",
+        photoBand1: "端子加工と機構統合",
+        photoBand2: "裁線設備",
+        photoBand3: "制御基板の応用",
+        photoBand4: "ハーネス事前製作と表示",
+        photoBand5: "設備制御配線",
+        projectsTitle: "施工実績",
+        projectsIntro: "実際の写真で鼎禾の配電、制御、設備統合の作業内容を紹介します。",
+        proj1Title: "産業用制御盤",
+        proj1Copy: "I/O モジュール、端子台、安全モジュール。",
+        proj2Title: "PLC 制御箱",
+        proj2Copy: "コントローラ、端子、配線統合。",
+        proj3Title: "ステンレス制御箱",
+        proj3Copy: "食品・実験設備向け制御用途。",
+        proj4Title: "カスタムハーネス",
+        proj4Copy: "コネクタ、端子、線材組立。",
+        proj5Title: "盤内配置",
+        proj5Copy: "PLC、インバータ、保護機器の統合。",
+        proj6Title: "設備制御配線",
+        proj6Copy: "設備動作に合わせた制御回路と盤内配線。",
+        proj7Title: "ハーネス事前製作",
+        proj7Copy: "線材の表示、圧着、組立をまとめて対応。",
+        proj8Title: "端子加工設備",
+        proj8Copy: "端子圧着、機構調整、HMI 操作を統合。",
+        proj9Title: "裁線設備",
+        proj9Copy: "線長設定、裁断フロー、操作画面配置。",
+        proj10Title: "制御基板",
+        proj10Copy: "接点分配、端子接続、制御信号整理。",
+        sdgsTitle: "鼎禾と SDGs",
+        sdgsIntro: "鼎禾は安定制御、省エネ改善、標準化された配線、設備寿命の延長を通じて、工場の効率向上と廃棄削減を支援します。",
+        sdgsPanelTitle: "現場から持続可能な生産を支える",
+        sdgsPanelCopy: "保守しやすく、追跡しやすく、量産しやすい電気制御統合で、配電盤、改造、自動化案件に明確な記録を残します。",
+        sdgsAction1: "省エネ制御とインバータ活用で設備の長期消費電力を抑えます。",
+        sdgsAction2: "修理と改造で設備寿命を延ばし、更新廃棄を減らします。",
+        sdgsAction3: "標準配線表、端子表示、試験手順で手戻りと材料ロスを減らします。",
+        sdg7LogoText: "エネルギーをみんなにそしてクリーンに",
+        sdg8LogoText: "働きがいも経済成長も",
+        sdg9LogoText: "産業と技術革新の基盤をつくろう",
+        sdg12LogoText: "つくる責任つかう責任",
+        sdg13LogoText: "気候変動に具体的な対策を",
+        sdg7Title: "クリーンエネルギー",
+        sdg7Copy: "制御ロジック、インバータ、省エネ設計によりエネルギー浪費を抑えます。",
+        sdg8Title: "働きがい",
+        sdg8Copy: "安全施工、標準作業、技術蓄積により現場作業を安定させます。",
+        sdg9Title: "産業と技術革新",
+        sdg9Copy: "自動化、PLC、機電統合で生産ライン更新と設備改善を支援します。",
+        sdg12Title: "責任ある生産",
+        sdg12Copy: "材料管理、事前配線、設備延命で廃棄と重複作業を減らします。",
+        sdg13Title: "気候変動対策",
+        sdg13Copy: "節電、手戻り削減、設備効率向上から減炭行動につなげます。",
+        processTitle: "進行フロー",
+        processIntro: "要件、見積、製作、試験、納入を明確に管理します。",
+        step1Title: "要件確認",
+        step1Copy: "設備動作、現場条件、部品ブランド、納期を確認。",
+        step2Title: "方案と見積",
+        step2Copy: "制御構成、材料範囲、作業内容、見積条件を整理。",
+        step3Title: "製作と試験",
+        step3Copy: "盤配線、プログラム設定、I/O 確認、基本動作試験。",
+        step4Title: "納入と支援",
+        step4Copy: "現場調整、操作説明、異常対応、保守支援。",
+        contactTitle: "お問い合わせ",
+        contactIntro: "配電盤、PLC、機械配線、設備改造のご相談をお送りください。",
+        phoneLabel: "電話",
+        faxLabel: "FAX",
+        addressLabel: "住所",
+        address: "台湾高雄市岡山区湾里路196巷15号",
+        formName: "氏名 / 会社名",
+        formNamePh: "氏名または会社名",
+        formPhone: "電話",
+        formPhonePh: "連絡可能な電話番号",
+        formSubject: "相談内容",
+        formSubjectPh: "配電盤 / PLC / 設備改造",
+        formMessage: "詳細",
+        formMessagePh: "設備、数量、現場条件、希望納期",
+        formSubmit: "送信",
+        footerCompany: "© 2026 鼎禾機電整合有限公司",
+        footerNote: "台湾高雄発の産業機電統合サービス。"
       }
-    });
-  </script>
+    };
 
+    i18n.ko = {
+      ...i18n.en,
+      brand: "DingHe Integrated Electrical Co., Ltd.",
+      tagline: "제어반・PLC・산업 자동화",
+      navServices: "서비스",
+      navProjects: "프로젝트",
+      navProcess: "프로세스",
+      navContact: "문의",
+      navCta: "상담하기",
+      heroTitle: "안정적인 생산을 위한 전기 통합.",
+      heroCopy: "DingHe Integrated Electrical은 대만 가오슝 강산에 위치하며 제어반 설계, PLC 계획, 기계 배선, 하네스 제작 및 산업 설비 통합을 요구 확인부터 시운전까지 지원합니다.",
+      heroPrimary: "프로젝트 상담",
+      heroSecondary: "사진 보기",
+      stat1Value: "가오슝 기반",
+      stat1Label: "남부 대만 공장을 빠르게 지원",
+      stat2Label: "제어 로직과 HMI 통합",
+      stat3Value: "제어반",
+      stat3Label: "배치, 배선, 라벨링, 안전 설계",
+      stat4Value: "맞춤 제작",
+      stat4Label: "설비와 현장 조건에 맞춘 설계",
+      servicesTitle: "핵심 서비스",
+      servicesIntro: "단일 제어 박스부터 전체 자동화 시스템까지 배전, 제어, 배선, 현장 통합을 함께 검토해 소통 오류와 재작업을 줄입니다.",
+      svc1Title: "제어반 설계 제작",
+      svc1Copy: "판넬 배치, 부품 선정, 단자 라벨, 배선 정리 및 안전 회로 계획.",
+      svc2Title: "PLC / HMI 계획",
+      svc2Copy: "제어 로직, HMI 화면, I/O 확인, 시운전 조정 및 유지보수 지원.",
+      svc3Title: "실험 설비 제작",
+      svc3Copy: "공정 요구에 따른 지그, 제어 박스, 센서 및 전기기계 통합.",
+      svc4Title: "기계 배선 솔루션",
+      svc4Copy: "하네스 조립, 단자 압착, 커넥터 준비 및 현장 기계 배선.",
+      svc5Title: "수리 및 개조",
+      svc5Copy: "기존 설비 문제 진단, 인버터 교체, 센서 교체 및 제어 흐름 개선.",
+      projectsTitle: "프로젝트 사례",
+      projectsIntro: "실제 프로젝트 사진으로 DingHe가 수행하는 배선, 제어 및 설비 통합 작업을 보여줍니다.",
+      proj1Title: "산업용 제어반",
+      proj1Copy: "I/O 모듈, 단자대 및 안전 모듈 구성.",
+      proj2Title: "PLC 제어 박스",
+      proj2Copy: "컨트롤러, 단자 및 배선 통합.",
+      proj3Title: "스테인리스 제어함",
+      proj3Copy: "식품 및 실험 설비 제어 응용.",
+      proj4Title: "맞춤 하네스",
+      proj4Copy: "커넥터, 단자 및 와이어 조립.",
+      proj5Title: "판넬 내부 배치",
+      proj5Copy: "PLC, 인버터 및 보호 장치 통합.",
+      proj6Title: "설비 제어 배선",
+      proj6Copy: "설비 동작에 맞춰 제어 회로와 판넬 배선을 정리.",
+      proj7Title: "와이어 사전 제작",
+      proj7Copy: "배치 와이어 라벨링, 압착 및 조립.",
+      photoBand1: "단자 가공 및 기구 통합",
+      photoBand2: "와이어 절단 설비",
+      photoBand3: "제어 PCB 응용",
+      photoBand4: "와이어 사전 제작 및 라벨링",
+      photoBand5: "설비 제어 배선",
+      proj8Title: "단자 가공 설비",
+      proj8Copy: "단자 압착, 기구 조정 및 HMI 조작 통합.",
+      proj9Title: "와이어 절단 설비",
+      proj9Copy: "와이어 길이 설정, 절단 흐름 및 조작 화면 구성.",
+      proj10Title: "제어 PCB 보드",
+      proj10Copy: "접점 분배, 단자 연결 및 제어 신호 정리.",
+      sdgsTitle: "DingHe와 SDGs",
+      sdgsIntro: "DingHe는 안정적인 제어, 에너지 절감 개선, 표준화된 배선, 설비 수명 연장을 통해 공장 효율 향상과 낭비 감소를 지원합니다.",
+      sdgsPanelTitle: "현장에서 지속 가능한 생산을 지원",
+      sdgsPanelCopy: "유지보수, 추적, 반복 제작이 쉬운 전기 제어 통합 방식으로 제어반, 개조, 자동화 프로젝트마다 명확한 기록을 남깁니다.",
+      sdgsAction1: "에너지 절감 제어와 인버터 적용으로 장기 전력 사용을 줄입니다.",
+      sdgsAction2: "수리와 개조로 설비 수명을 늘리고 교체 폐기물을 줄입니다.",
+      sdgsAction3: "표준 배선표, 단자 라벨, 테스트 절차로 재작업과 자재 손실을 줄입니다.",
+      sdg7LogoText: "모두를 위한 깨끗한 에너지",
+      sdg8LogoText: "좋은 일자리와 경제 성장",
+      sdg9LogoText: "산업 혁신과 기반 시설",
+      sdg12LogoText: "책임 있는 소비와 생산",
+      sdg13LogoText: "기후 행동",
+      sdg7Title: "깨끗한 에너지",
+      sdg7Copy: "제어 로직, 인버터, 에너지 절감 설계를 통해 고객의 에너지 낭비를 줄입니다.",
+      sdg8Title: "좋은 일자리",
+      sdg8Copy: "안전한 시공, 표준 작업, 기술 축적으로 현장 작업을 더 안정적으로 만듭니다.",
+      sdg9Title: "산업 혁신",
+      sdg9Copy: "자동화, PLC, 전기기계 통합으로 생산 라인 업그레이드와 설비 개선을 지원합니다.",
+      sdg12Title: "책임 있는 생산",
+      sdg12Copy: "자재 관리, 와이어 사전 제작, 설비 수명 연장으로 낭비와 반복 작업을 줄입니다.",
+      sdg13Title: "기후 행동",
+      sdg13Copy: "절전, 재작업 감소, 설비 효율 향상에서 탄소 저감 행동으로 연결합니다.",
+      processTitle: "작업 프로세스",
+      processIntro: "요구사항, 견적, 제작, 테스트, 납품을 명확하게 추적합니다.",
+      step1Title: "요구 확인",
+      step1Copy: "설비 동작, 현장 제한, 부품 브랜드 및 납기를 확인합니다.",
+      step2Title: "계획 및 견적",
+      step2Copy: "제어 구조, 자재 범위, 작업 내용 및 견적 조건을 정리합니다.",
+      step3Title: "제작 및 테스트",
+      step3Copy: "판넬 배선, 프로그램 설정, I/O 확인 및 기본 기능 테스트.",
+      step4Title: "시운전 및 지원",
+      step4Copy: "현장 조정, 조작 설명, 문제 해결 및 유지보수 지원.",
+      contactTitle: "문의하기",
+      contactIntro: "제어반, PLC, 기계 배선 또는 설비 개조가 필요하면 요구사항을 남겨 주세요.",
+      phoneLabel: "전화",
+      faxLabel: "팩스",
+      addressLabel: "주소",
+      address: "대만 가오슝시 강산구 완리로 196항 15호",
+      formName: "이름 / 회사",
+      formNamePh: "이름 또는 회사명",
+      formPhone: "전화",
+      formPhonePh: "연락 가능한 전화번호",
+      formSubject: "문의 주제",
+      formSubjectPh: "제어반 / PLC / 설비 개조",
+      formMessage: "상세 내용",
+      formMessagePh: "설비, 수량, 현장 조건 및 희망 일정",
+      formSubmit: "문의 보내기",
+      footerNote: "대만 가오슝의 산업 전기 통합 서비스."
+    };
+    i18n.vi = {
+      ...i18n.en,
+      brand: "DingHe Integrated Electrical Co., Ltd.",
+      tagline: "Tủ điện・PLC・Tự động hóa công nghiệp",
+      navServices: "Dịch vụ",
+      navProjects: "Dự án",
+      navProcess: "Quy trình",
+      navContact: "Liên hệ",
+      navCta: "Gọi ngay",
+      heroTitle: "Tích hợp điện cho sản xuất ổn định.",
+      heroCopy: "DingHe Integrated Electrical đặt tại Gangshan, Kaohsiung, cung cấp thiết kế tủ điện, lập kế hoạch PLC, đi dây máy, lắp ráp dây điện và tích hợp thiết bị công nghiệp từ khảo sát nhu cầu đến chạy thử.",
+      heroPrimary: "Trao đổi dự án",
+      heroSecondary: "Xem hình ảnh",
+      stat1Value: "Tại Kaohsiung",
+      stat1Label: "Hỗ trợ nhanh các nhà máy miền Nam Đài Loan",
+      stat2Label: "Tích hợp logic điều khiển và HMI",
+      stat3Value: "Tủ điện",
+      stat3Label: "Bố trí, đi dây, nhãn và an toàn",
+      stat4Value: "Tùy chỉnh",
+      stat4Label: "Thiết kế theo máy và điều kiện hiện trường",
+      servicesTitle: "Dịch vụ chính",
+      servicesIntro: "Từ một hộp điều khiển đến hệ thống tự động hóa hoàn chỉnh, DingHe kết hợp phân phối điện, điều khiển, dây điện và hiện trường trong cùng một kế hoạch.",
+      svc1Title: "Thiết kế tủ điện",
+      svc1Copy: "Bố trí tủ, chọn linh kiện, nhãn terminal, máng dây và mạch an toàn.",
+      svc2Title: "Lập kế hoạch PLC / HMI",
+      svc2Copy: "Logic điều khiển, màn hình HMI, kiểm tra I/O, chạy thử và bảo trì.",
+      svc3Title: "Chế tạo thiết bị thử nghiệm",
+      svc3Copy: "Đồ gá, hộp điều khiển, cảm biến và tích hợp điện cơ theo quy trình.",
+      svc4Title: "Giải pháp dây máy",
+      svc4Copy: "Lắp ráp dây, ép cos, chuẩn bị đầu nối và đi dây tại hiện trường.",
+      svc5Title: "Sửa chữa và cải tạo",
+      svc5Copy: "Chẩn đoán lỗi, thay biến tần, thay cảm biến và tối ưu quy trình điều khiển.",
+      projectsTitle: "Dự án",
+      projectsIntro: "Hình ảnh thực tế thể hiện năng lực đi dây tủ điện, điều khiển và tích hợp thiết bị của DingHe.",
+      proj1Title: "Tủ điều khiển công nghiệp",
+      proj1Copy: "Module I/O, terminal và module an toàn.",
+      proj2Title: "Hộp điều khiển PLC",
+      proj2Copy: "Tích hợp bộ điều khiển, terminal và dây điện.",
+      proj3Title: "Tủ điều khiển inox",
+      proj3Copy: "Ứng dụng điều khiển cho thực phẩm và thiết bị thử nghiệm.",
+      proj4Title: "Dây điện tùy chỉnh",
+      proj4Copy: "Đầu nối, terminal và lắp ráp dây.",
+      proj5Title: "Bố trí trong tủ",
+      proj5Copy: "Tích hợp PLC, biến tần và thiết bị bảo vệ.",
+      proj6Title: "Đi dây điều khiển máy",
+      proj6Copy: "Sắp xếp mạch điều khiển và dây trong tủ theo hoạt động máy.",
+      proj7Title: "Chuẩn bị bộ dây",
+      proj7Copy: "Đánh dấu, ép cos và lắp ráp dây theo lô.",
+      photoBand1: "Gia công terminal và tích hợp cơ cấu",
+      photoBand2: "Thiết bị cắt dây",
+      photoBand3: "Ứng dụng PCB điều khiển",
+      photoBand4: "Chuẩn bị dây và nhãn",
+      photoBand5: "Đi dây điều khiển thiết bị",
+      proj8Title: "Thiết bị gia công terminal",
+      proj8Copy: "Ép cos terminal, chỉnh cơ cấu và tích hợp vận hành HMI.",
+      proj9Title: "Thiết bị cắt dây",
+      proj9Copy: "Cài chiều dài dây, quy trình cắt và bố trí giao diện vận hành.",
+      proj10Title: "Bo mạch PCB điều khiển",
+      proj10Copy: "Phân phối tiếp điểm, kết nối terminal và sắp xếp tín hiệu điều khiển.",
+      sdgsTitle: "DingHe và SDGs",
+      sdgsIntro: "DingHe đưa phát triển bền vững vào công việc kỹ thuật hằng ngày bằng điều khiển ổn định, tiết kiệm năng lượng, chuẩn hóa dây và kéo dài tuổi thọ thiết bị.",
+      sdgsPanelTitle: "Hỗ trợ sản xuất bền vững từ hiện trường",
+      sdgsPanelCopy: "Cách tích hợp điều khiển điện của chúng tôi dễ bảo trì, dễ truy xuất và dễ sản xuất lặp lại, để mỗi dự án tủ điện, cải tạo và tự động hóa đều có hồ sơ rõ ràng.",
+      sdgsAction1: "Điều khiển tiết kiệm năng lượng và ứng dụng biến tần giúp giảm điện năng sử dụng lâu dài.",
+      sdgsAction2: "Sửa chữa và cải tạo kéo dài tuổi thọ thiết bị, giảm thay mới và phế bỏ.",
+      sdgsAction3: "Danh sách dây tiêu chuẩn, nhãn terminal và quy trình kiểm tra giúp giảm làm lại và hao hụt vật tư.",
+      sdg7LogoText: "Năng lượng sạch và giá hợp lý",
+      sdg8LogoText: "Việc làm tốt và tăng trưởng kinh tế",
+      sdg9LogoText: "Công nghiệp, đổi mới và hạ tầng",
+      sdg12LogoText: "Tiêu dùng và sản xuất có trách nhiệm",
+      sdg13LogoText: "Hành động khí hậu",
+      sdg7Title: "Năng lượng sạch",
+      sdg7Copy: "Logic điều khiển, biến tần và thiết kế tiết kiệm năng lượng giúp khách hàng giảm lãng phí điện.",
+      sdg8Title: "Việc làm tốt",
+      sdg8Copy: "Thi công an toàn, quy trình chuẩn và tích lũy kỹ thuật giúp công việc hiện trường ổn định hơn.",
+      sdg9Title: "Đổi mới công nghiệp",
+      sdg9Copy: "Tự động hóa, PLC và tích hợp điện cơ hỗ trợ nâng cấp dây chuyền và cải thiện thiết bị.",
+      sdg12Title: "Sản xuất trách nhiệm",
+      sdg12Copy: "Quản lý vật tư, chuẩn bị dây và kéo dài tuổi thọ thiết bị giúp giảm lãng phí và thi công lặp lại.",
+      sdg13Title: "Hành động khí hậu",
+      sdg13Copy: "Tiết kiệm điện, giảm làm lại và nâng hiệu suất thiết bị để gắn dịch vụ kỹ thuật với giảm carbon.",
+      processTitle: "Quy trình",
+      processIntro: "Xác nhận nhu cầu, báo giá, chế tạo, kiểm tra và bàn giao rõ ràng.",
+      step1Title: "Xác nhận nhu cầu",
+      step1Copy: "Hiểu chuyển động máy, giới hạn hiện trường, thương hiệu linh kiện và tiến độ.",
+      step2Title: "Phương án và báo giá",
+      step2Copy: "Tổng hợp cấu trúc điều khiển, phạm vi vật tư, nội dung thi công và điều kiện báo giá.",
+      step3Title: "Chế tạo và kiểm tra",
+      step3Copy: "Hoàn tất đi dây tủ, cài đặt chương trình, kiểm tra I/O và chức năng cơ bản.",
+      step4Title: "Bàn giao và hỗ trợ",
+      step4Copy: "Điều chỉnh tại hiện trường, hướng dẫn vận hành, xử lý lỗi và bảo trì.",
+      contactTitle: "Liên hệ DingHe",
+      contactIntro: "Nếu cần tủ điện, PLC, đi dây máy hoặc cải tạo thiết bị, hãy gửi nhu cầu để DingHe đánh giá.",
+      phoneLabel: "Điện thoại",
+      faxLabel: "Fax",
+      addressLabel: "Địa chỉ",
+      address: "Số 15, hẻm 196, đường Wanli, quận Gangshan, thành phố Kaohsiung, Đài Loan",
+      formName: "Tên / Công ty",
+      formNamePh: "Tên hoặc công ty của bạn",
+      formPhone: "Điện thoại",
+      formPhonePh: "Số điện thoại liên hệ",
+      formSubject: "Chủ đề",
+      formSubjectPh: "Tủ điện / PLC / cải tạo thiết bị",
+      formMessage: "Nội dung",
+      formMessagePh: "Thiết bị, số lượng, điều kiện hiện trường và lịch mong muốn",
+      formSubmit: "Gửi yêu cầu",
+      footerNote: "Tích hợp điện công nghiệp từ Kaohsiung, Đài Loan."
+    };
+    i18n.th = {
+      ...i18n.en,
+      brand: "DingHe Integrated Electrical Co., Ltd.",
+      tagline: "ตู้ควบคุม・PLC・ระบบอัตโนมัติอุตสาหกรรม",
+      navServices: "บริการ",
+      navProjects: "ผลงาน",
+      navProcess: "ขั้นตอน",
+      navContact: "ติดต่อ",
+      navCta: "โทรเลย",
+      heroTitle: "งานไฟฟ้าอุตสาหกรรมเพื่อการผลิตที่มั่นคง",
+      heroCopy: "DingHe Integrated Electrical ตั้งอยู่ที่กังซาน เมืองเกาสง ให้บริการออกแบบตู้ควบคุม วางแผน PLC เดินสายเครื่องจักร ประกอบสายไฟ และบูรณาการอุปกรณ์อุตสาหกรรมตั้งแต่ความต้องการจนถึงทดสอบเดินเครื่อง",
+      heroPrimary: "คุยงาน",
+      heroSecondary: "ดูรูปผลงาน",
+      stat1Value: "ฐานที่เกาสง",
+      stat1Label: "สนับสนุนโรงงานภาคใต้ของไต้หวันได้รวดเร็ว",
+      stat2Label: "รวมลอจิกควบคุมและหน้าจอ HMI",
+      stat3Value: "ตู้ควบคุม",
+      stat3Label: "จัดวาง เดินสาย ติดป้าย และระบบความปลอดภัย",
+      stat4Value: "งานสั่งทำ",
+      stat4Label: "ออกแบบตามเครื่องจักรและสภาพหน้างาน",
+      servicesTitle: "บริการหลัก",
+      servicesIntro: "ตั้งแต่กล่องควบคุมหนึ่งชุดจนถึงระบบอัตโนมัติเต็มรูปแบบ DingHe จัดการระบบไฟฟ้า การควบคุม สายไฟ และหน้างานในแผนเดียวกัน",
+      svc1Title: "ออกแบบและผลิตตู้ควบคุม",
+      svc1Copy: "จัดวางตู้ เลือกอุปกรณ์ ติดป้ายเทอร์มินัล จัดรางสาย และวางแผนวงจรความปลอดภัย",
+      svc2Title: "วางแผน PLC / HMI",
+      svc2Copy: "ลอจิกควบคุม หน้าจอ HMI ตรวจ I/O ทดสอบเดินเครื่อง และสนับสนุนบำรุงรักษา",
+      svc3Title: "ผลิตอุปกรณ์ทดลอง",
+      svc3Copy: "จิ๊ก กล่องควบคุม เซนเซอร์ และระบบไฟฟ้าเครื่องกลตามความต้องการกระบวนการ",
+      svc4Title: "ระบบสายเครื่องจักร",
+      svc4Copy: "ประกอบสายไฟ ย้ำหางปลา เตรียมคอนเนคเตอร์ และเดินสายเครื่องจักรหน้างาน",
+      svc5Title: "ซ่อมและปรับปรุงเครื่อง",
+      svc5Copy: "ตรวจหาข้อขัดข้อง เปลี่ยนอินเวอร์เตอร์ เปลี่ยนเซนเซอร์ และปรับปรุงขั้นตอนควบคุม",
+      projectsTitle: "ผลงาน",
+      projectsIntro: "ใช้ภาพงานจริงแสดงความสามารถด้านตู้ไฟ การควบคุม และการบูรณาการเครื่องจักรของ DingHe",
+      proj1Title: "ตู้ควบคุมอุตสาหกรรม",
+      proj1Copy: "โมดูล I/O เทอร์มินัล และโมดูลความปลอดภัย",
+      proj2Title: "กล่องควบคุม PLC",
+      proj2Copy: "รวมคอนโทรลเลอร์ เทอร์มินัล และสายไฟ",
+      proj3Title: "ตู้ควบคุมสแตนเลส",
+      proj3Copy: "งานควบคุมสำหรับอาหารและอุปกรณ์ทดลอง",
+      proj4Title: "สายไฟสั่งทำ",
+      proj4Copy: "คอนเนคเตอร์ เทอร์มินัล และชุดสายไฟ",
+      proj5Title: "การจัดวางในตู้",
+      proj5Copy: "รวม PLC อินเวอร์เตอร์ และอุปกรณ์ป้องกัน",
+      proj6Title: "เดินสายควบคุมเครื่องจักร",
+      proj6Copy: "จัดวงจรควบคุมและสายภายในตู้ตามการทำงานของเครื่อง",
+      proj7Title: "เตรียมชุดสายไฟ",
+      proj7Copy: "ติดป้ายสาย ย้ำหางปลา และประกอบสายเป็นชุด",
+      photoBand1: "งานเทอร์มินัลและการรวมกลไก",
+      photoBand2: "เครื่องตัดสายไฟ",
+      photoBand3: "การใช้งาน PCB ควบคุม",
+      photoBand4: "เตรียมสายไฟและติดป้าย",
+      photoBand5: "เดินสายควบคุมอุปกรณ์",
+      proj8Title: "เครื่องงานเทอร์มินัล",
+      proj8Copy: "ย้ำเทอร์มินัล ปรับกลไก และรวมการทำงาน HMI",
+      proj9Title: "เครื่องตัดสายไฟ",
+      proj9Copy: "ตั้งค่าความยาวสาย ขั้นตอนการตัด และหน้าจอการใช้งาน",
+      proj10Title: "บอร์ด PCB ควบคุม",
+      proj10Copy: "จัดจุดต่อ เทอร์มินัล และสัญญาณควบคุม",
+      sdgsTitle: "DingHe กับ SDGs",
+      sdgsIntro: "DingHe เชื่อมโยงความยั่งยืนเข้ากับงานวิศวกรรมประจำวัน ผ่านการควบคุมที่เสถียร การประหยัดพลังงาน การทำสายแบบมาตรฐาน และการยืดอายุอุปกรณ์",
+      sdgsPanelTitle: "สนับสนุนการผลิตที่ยั่งยืนจากหน้างาน",
+      sdgsPanelCopy: "งานรวมระบบควบคุมไฟฟ้าของเราเน้นดูแลง่าย ติดตามได้ และผลิตซ้ำได้ เพื่อให้ทุกงานตู้ไฟ ปรับปรุงเครื่อง และอัตโนมัติมีบันทึกชัดเจน",
+      sdgsAction1: "ระบบควบคุมประหยัดพลังงานและอินเวอร์เตอร์ช่วยลดการใช้ไฟระยะยาว",
+      sdgsAction2: "งานซ่อมและปรับปรุงช่วยยืดอายุอุปกรณ์ ลดการเปลี่ยนใหม่และของเสีย",
+      sdgsAction3: "รายการสายมาตรฐาน ป้ายเทอร์มินัล และขั้นตอนทดสอบช่วยลดงานซ้ำและการสูญเสียวัสดุ",
+      sdg7LogoText: "พลังงานสะอาดที่เข้าถึงได้",
+      sdg8LogoText: "งานที่ดีและเศรษฐกิจเติบโต",
+      sdg9LogoText: "อุตสาหกรรม นวัตกรรม และโครงสร้างพื้นฐาน",
+      sdg12LogoText: "การบริโภคและผลิตอย่างรับผิดชอบ",
+      sdg13LogoText: "การรับมือการเปลี่ยนแปลงสภาพภูมิอากาศ",
+      sdg7Title: "พลังงานสะอาด",
+      sdg7Copy: "ลอจิกควบคุม อินเวอร์เตอร์ และการออกแบบประหยัดพลังงานช่วยลดการสูญเสียพลังงาน",
+      sdg8Title: "งานที่ดี",
+      sdg8Copy: "การทำงานที่ปลอดภัย ขั้นตอนมาตรฐาน และความรู้ทางเทคนิคช่วยให้หน้างานมั่นคงขึ้น",
+      sdg9Title: "นวัตกรรมอุตสาหกรรม",
+      sdg9Copy: "ระบบอัตโนมัติ PLC และการรวมไฟฟ้าเครื่องกลช่วยอัปเกรดไลน์ผลิตและปรับปรุงอุปกรณ์",
+      sdg12Title: "การผลิตรับผิดชอบ",
+      sdg12Copy: "การควบคุมวัสดุ การเตรียมสาย และการยืดอายุอุปกรณ์ช่วยลดของเสียและงานซ้ำ",
+      sdg13Title: "การรับมือภูมิอากาศ",
+      sdg13Copy: "เริ่มจากประหยัดไฟ ลดงานซ้ำ และเพิ่มประสิทธิภาพอุปกรณ์ เพื่อเชื่อมงานวิศวกรรมกับการลดคาร์บอน",
+      processTitle: "ขั้นตอนทำงาน",
+      processIntro: "ติดตามความต้องการ ใบเสนอราคา การผลิต การทดสอบ และส่งมอบอย่างชัดเจน",
+      step1Title: "ยืนยันความต้องการ",
+      step1Copy: "เข้าใจการทำงานของเครื่อง ข้อจำกัดหน้างาน แบรนด์อุปกรณ์ และกำหนดส่ง",
+      step2Title: "แผนและใบเสนอราคา",
+      step2Copy: "สรุปโครงสร้างควบคุม ขอบเขตวัสดุ งานติดตั้ง และเงื่อนไขราคา",
+      step3Title: "ผลิตและทดสอบ",
+      step3Copy: "เดินสายตู้ ตั้งโปรแกรม ตรวจ I/O และทดสอบฟังก์ชันพื้นฐาน",
+      step4Title: "ส่งมอบและสนับสนุน",
+      step4Copy: "ปรับหน้างาน แนะนำการใช้งาน แก้ปัญหา และบำรุงรักษา",
+      contactTitle: "ติดต่อ DingHe",
+      contactIntro: "หากต้องการตู้ควบคุม PLC เดินสายเครื่องจักร หรือปรับปรุงอุปกรณ์ กรุณาส่งรายละเอียดเพื่อประเมิน",
+      phoneLabel: "โทรศัพท์",
+      faxLabel: "แฟกซ์",
+      addressLabel: "ที่อยู่",
+      address: "เลขที่ 15 ซอย 196 ถนน Wanli เขต Gangshan เมือง Kaohsiung ไต้หวัน",
+      formName: "ชื่อ / บริษัท",
+      formNamePh: "ชื่อหรือบริษัทของคุณ",
+      formPhone: "โทรศัพท์",
+      formPhonePh: "เบอร์ติดต่อ",
+      formSubject: "หัวข้อ",
+      formSubjectPh: "ตู้ควบคุม / PLC / ปรับปรุงเครื่อง",
+      formMessage: "รายละเอียด",
+      formMessagePh: "เครื่องจักร จำนวน สภาพหน้างาน และกำหนดเวลาที่ต้องการ",
+      formSubmit: "ส่งคำถาม",
+      footerNote: "บริการบูรณาการไฟฟ้าอุตสาหกรรมจากเกาสง ไต้หวัน"
+    };
+    i18n.es = {
+      ...i18n.en,
+      brand: "DingHe Integrated Electrical Co., Ltd.",
+      tagline: "Tableros・PLC・Automatización industrial",
+      navServices: "Servicios",
+      navProjects: "Proyectos",
+      navProcess: "Proceso",
+      navContact: "Contacto",
+      navCta: "Llamar",
+      heroTitle: "Integración eléctrica para producción estable.",
+      heroCopy: "DingHe Integrated Electrical, con sede en Gangshan, Kaohsiung, ofrece diseño de tableros, planificación PLC, cableado de máquinas, armado de cableado e integración de equipos industriales desde el requerimiento hasta la puesta en marcha.",
+      heroPrimary: "Hablar del proyecto",
+      heroSecondary: "Ver fotos",
+      stat1Value: "Base en Kaohsiung",
+      stat1Label: "Soporte rápido para fábricas del sur de Taiwán",
+      stat2Label: "Integración de lógica de control e HMI",
+      stat3Value: "Tableros",
+      stat3Label: "Diseño, cableado, etiquetado y seguridad",
+      stat4Value: "A medida",
+      stat4Label: "Diseñado según máquina y sitio",
+      servicesTitle: "Servicios principales",
+      servicesIntro: "Desde una caja de control hasta un sistema de automatización completo, DingHe alinea distribución eléctrica, control, cableado e integración en sitio para reducir retrabajos.",
+      svc1Title: "Diseño de tableros",
+      svc1Copy: "Distribución del tablero, selección de componentes, etiquetas, canaletas y circuitos de seguridad.",
+      svc2Title: "Planificación PLC / HMI",
+      svc2Copy: "Lógica de control, pantallas HMI, revisión I/O, puesta en marcha y soporte.",
+      svc3Title: "Equipos experimentales",
+      svc3Copy: "Jigs, cajas de control, sensores e integración electromecánica según el proceso.",
+      svc4Title: "Cableado de máquinas",
+      svc4Copy: "Arneses, prensado de terminales, conectores y cableado en sitio.",
+      svc5Title: "Reparación y retrofit",
+      svc5Copy: "Diagnóstico, reemplazo de inversores, sensores y mejora del flujo de control.",
+      projectsTitle: "Proyectos",
+      projectsIntro: "Fotos reales muestran el trabajo de DingHe en tableros, control e integración de equipos.",
+      proj1Title: "Tablero de control industrial",
+      proj1Copy: "Módulos I/O, borneras y módulos de seguridad.",
+      proj2Title: "Caja de control PLC",
+      proj2Copy: "Controlador, terminales e integración de cableado.",
+      proj3Title: "Gabinete inoxidable",
+      proj3Copy: "Control para equipos de alimentos y laboratorio.",
+      proj4Title: "Arneses personalizados",
+      proj4Copy: "Conectores, terminales y armado de cables.",
+      proj5Title: "Interior del tablero",
+      proj5Copy: "Integración de PLC, inversor y protecciones.",
+      proj6Title: "Cableado de control",
+      proj6Copy: "Circuitos de control y cableado del tablero según la máquina.",
+      proj7Title: "Cables preparados",
+      proj7Copy: "Etiquetado, prensado y armado de cables por lote.",
+      photoBand1: "Procesamiento de terminales e integración mecánica",
+      photoBand2: "Equipo de corte de cables",
+      photoBand3: "Aplicaciones de PCB de control",
+      photoBand4: "Cables preparados y etiquetas",
+      photoBand5: "Cableado de control de equipos",
+      proj8Title: "Equipo de procesamiento de terminales",
+      proj8Copy: "Prensado de terminales, ajuste mecánico e integración HMI.",
+      proj9Title: "Equipo de corte de cables",
+      proj9Copy: "Ajuste de longitud, flujo de corte y diseño de interfaz de operación.",
+      proj10Title: "PCB de control",
+      proj10Copy: "Distribución de contactos, conexión de terminales y orden de señales de control.",
+      sdgsTitle: "DingHe y los SDGs",
+      sdgsIntro: "DingHe conecta la sostenibilidad con la ingeniería diaria mediante controles estables, ahorro de energía, cableado estandarizado y mayor vida útil de los equipos.",
+      sdgsPanelTitle: "Producción sostenible desde el sitio de trabajo",
+      sdgsPanelCopy: "Nuestro trabajo de integración de control eléctrico busca ser mantenible, trazable y repetible, dejando registros claros para tableros, retrofit y automatización.",
+      sdgsAction1: "Controles de ahorro energético e inversores reducen el consumo eléctrico a largo plazo.",
+      sdgsAction2: "La reparación y el retrofit prolongan la vida del equipo y reducen reemplazos y residuos.",
+      sdgsAction3: "Listas de cableado, etiquetas de terminales y pruebas estándar reducen retrabajo y pérdida de material.",
+      sdg7LogoText: "Energía asequible y no contaminante",
+      sdg8LogoText: "Trabajo decente y crecimiento económico",
+      sdg9LogoText: "Industria, innovación e infraestructura",
+      sdg12LogoText: "Producción y consumo responsables",
+      sdg13LogoText: "Acción por el clima",
+      sdg7Title: "Energía limpia",
+      sdg7Copy: "La lógica de control, inversores y planificación energética ayudan a reducir el desperdicio de energía.",
+      sdg8Title: "Trabajo decente",
+      sdg8Copy: "Trabajo seguro, procedimientos estándar y conocimiento técnico hacen más estable el trabajo en sitio.",
+      sdg9Title: "Innovación industrial",
+      sdg9Copy: "Automatización, PLC e integración electromecánica apoyan mejoras de línea y equipos.",
+      sdg12Title: "Producción responsable",
+      sdg12Copy: "Control de materiales, cables preparados y extensión de vida del equipo reducen desperdicio y trabajo repetido.",
+      sdg13Title: "Acción climática",
+      sdg13Copy: "Ahorro eléctrico, menos retrabajo y mayor eficiencia conectan la ingeniería con la reducción de carbono.",
+      processTitle: "Proceso",
+      processIntro: "Alineamos requisitos, alcance de cotización, fabricación, pruebas y entrega.",
+      step1Title: "Confirmación",
+      step1Copy: "Movimiento de la máquina, límites del sitio, marcas de componentes y plazo.",
+      step2Title: "Plan y cotización",
+      step2Copy: "Estructura de control, materiales, contenido de trabajo y condiciones.",
+      step3Title: "Fabricación y prueba",
+      step3Copy: "Cableado del tablero, programa, revisión I/O y prueba funcional básica.",
+      step4Title: "Entrega y soporte",
+      step4Copy: "Ajuste en sitio, capacitación, resolución de fallas y mantenimiento.",
+      contactTitle: "Contactar a DingHe",
+      contactIntro: "Para tableros, PLC, cableado o retrofit, envíe su requerimiento para evaluación.",
+      phoneLabel: "Teléfono",
+      faxLabel: "Fax",
+      addressLabel: "Dirección",
+      address: "No. 15, Ln. 196, Wanli Rd., Gangshan Dist., Kaohsiung City, Taiwán",
+      formName: "Nombre / Empresa",
+      formNamePh: "Su nombre o empresa",
+      formPhone: "Teléfono",
+      formPhonePh: "Número de contacto",
+      formSubject: "Asunto",
+      formSubjectPh: "Tablero / PLC / retrofit",
+      formMessage: "Detalles",
+      formMessagePh: "Máquina, cantidad, condiciones del sitio y plazo deseado",
+      formSubmit: "Enviar consulta",
+      footerNote: "Integración eléctrica industrial desde Kaohsiung, Taiwán."
+    };
+
+    const languageSelect = document.getElementById("languageSelect");
+    const header = document.getElementById("siteHeader");
+    const mobileToggle = document.getElementById("mobileToggle");
+
+    function applyLanguage(lang) {
+      const pack = i18n[lang] || i18n.zh;
+      document.documentElement.lang = lang === "zh" ? "zh-TW" : lang;
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const key = node.getAttribute("data-i18n");
+        if (pack[key]) node.textContent = pack[key];
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
+        const key = node.getAttribute("data-i18n-placeholder");
+        if (pack[key]) node.setAttribute("placeholder", pack[key]);
+      });
+      localStorage.setItem("dinghe-language", lang);
+    }
+
+    languageSelect.addEventListener("change", (event) => applyLanguage(event.target.value));
+    mobileToggle.addEventListener("click", () => {
+      const open = header.classList.toggle("open");
+      mobileToggle.setAttribute("aria-expanded", String(open));
+    });
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        header.classList.remove("open");
+        mobileToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const savedLanguage = localStorage.getItem("dinghe-language") || "zh";
+    languageSelect.value = savedLanguage;
+    applyLanguage(savedLanguage);
+  </script>
 </body>
 </html>
