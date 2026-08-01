@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dhintetw-create.github.io/dinghe/sitemap.xml
