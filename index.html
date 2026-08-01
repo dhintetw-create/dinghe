@@ -627,6 +627,18 @@
       box-shadow: 0 0 0 3px rgba(45, 93, 120, 0.14);
     }
     .field { margin-bottom: 14px; }
+    .form-status {
+      display: none;
+      margin: 14px 0 0;
+      padding: 12px 14px;
+      border: 1px solid rgba(39, 118, 76, 0.24);
+      border-radius: 6px;
+      background: #eef8f1;
+      color: #1f6b41;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .form-status.is-visible { display: block; }
 
     footer {
       background: #111b24;
@@ -1057,7 +1069,11 @@
             <div class="contact-item"><span aria-hidden="true">⌖</span><div><strong data-i18n="addressLabel">地址</strong><span data-i18n="address">高雄市岡山區灣裡里灣裡路 196 巷 15 號</span></div></div>
           </div>
         </aside>
-        <form class="contact-form" action="mailto:dh.inte.tw@gmail.com" data-mailto="dh.inte.tw@gmail.com">
+        <form class="contact-form" action="https://formsubmit.co/dh.inte.tw@gmail.com" method="POST" accept-charset="UTF-8">
+          <input type="hidden" name="_subject" value="鼎禾網站詢問">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://dhintetw-create.github.io/dinghe/?sent=1#contact">
           <div class="form-grid">
             <div class="field">
               <label for="name" data-i18n="formName">姓名 / 公司</label>
@@ -1081,6 +1097,7 @@
             <textarea id="message" name="message" data-i18n-placeholder="formMessagePh" placeholder="請簡述設備、數量、現場條件與希望交期"></textarea>
           </div>
           <button class="btn btn-primary" type="submit" data-i18n="formSubmit">送出詢問</button>
+          <p class="form-status" data-form-status data-i18n="formSent">詢問已送出，鼎禾會盡快回覆。</p>
         </form>
       </div>
     </section>
@@ -1205,6 +1222,7 @@
         formMessage: "需求內容",
         formMessagePh: "請簡述設備、數量、現場條件與希望交期",
         formSubmit: "送出詢問",
+        formSent: "詢問已送出，鼎禾會盡快回覆。",
         footerCompany: "© 2026 鼎禾機電整合有限公司",
         footerNote: "Industrial electrical integration from Kaohsiung, Taiwan."
       },
@@ -1318,6 +1336,7 @@
         formMessage: "Details",
         formMessagePh: "Machine, quantity, site condition and target schedule",
         formSubmit: "Send Inquiry",
+        formSent: "Your inquiry has been sent. DingHe will reply soon.",
         footerCompany: "© 2026 DingHe Integrated Electrical Co., Ltd.",
         footerNote: "Industrial electrical integration from Kaohsiung, Taiwan."
       },
@@ -1431,6 +1450,7 @@
         formMessage: "詳細",
         formMessagePh: "設備、数量、現場条件、希望納期",
         formSubmit: "送信",
+        formSent: "お問い合わせを送信しました。鼎禾より順次ご連絡いたします。",
         footerCompany: "© 2026 鼎禾機電整合有限公司",
         footerNote: "台湾高雄発の産業機電統合サービス。"
       }
@@ -1544,6 +1564,7 @@
       formMessage: "상세 내용",
       formMessagePh: "설비, 수량, 현장 조건 및 희망 일정",
       formSubmit: "문의 보내기",
+      formSent: "문의가 전송되었습니다. DingHe에서 곧 답변드리겠습니다.",
       footerNote: "대만 가오슝의 산업 전기 통합 서비스."
     };
     i18n.vi = {
@@ -1654,6 +1675,7 @@
       formMessage: "Nội dung",
       formMessagePh: "Thiết bị, số lượng, điều kiện hiện trường và lịch mong muốn",
       formSubmit: "Gửi yêu cầu",
+      formSent: "Yêu cầu đã được gửi. DingHe sẽ phản hồi sớm.",
       footerNote: "Tích hợp điện công nghiệp từ Kaohsiung, Đài Loan."
     };
     i18n.th = {
@@ -1764,6 +1786,7 @@
       formMessage: "รายละเอียด",
       formMessagePh: "เครื่องจักร จำนวน สภาพหน้างาน และกำหนดเวลาที่ต้องการ",
       formSubmit: "ส่งคำถาม",
+      formSent: "ส่งคำถามแล้ว DingHe จะติดต่อกลับโดยเร็ว",
       footerNote: "บริการบูรณาการไฟฟ้าอุตสาหกรรมจากเกาสง ไต้หวัน"
     };
     i18n.es = {
@@ -1874,6 +1897,7 @@
       formMessage: "Detalles",
       formMessagePh: "Máquina, cantidad, condiciones del sitio y plazo deseado",
       formSubmit: "Enviar consulta",
+      formSent: "La consulta se envió correctamente. DingHe responderá pronto.",
       footerNote: "Integración eléctrica industrial desde Kaohsiung, Taiwán."
     };
 
@@ -1907,34 +1931,15 @@
       });
     });
 
-    const contactForm = document.querySelector(".contact-form");
-    if (contactForm) {
-      contactForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const data = new FormData(contactForm);
-        const name = String(data.get("name") || "").trim();
-        const phone = String(data.get("phone") || "").trim();
-        const email = String(data.get("email") || "").trim();
-        const subject = String(data.get("subject") || "").trim();
-        const message = String(data.get("message") || "").trim();
-        const mailSubject = subject ? "[鼎禾網站詢問] " + subject : "[鼎禾網站詢問]";
-        const mailBody = [
-          "姓名 / 公司：" + name,
-          "電話：" + phone,
-          "Email：" + email,
-          "需求主旨：" + subject,
-          "",
-          "需求內容：",
-          message,
-        ].join("\n");
-        const recipient = contactForm.dataset.mailto || "dh.inte.tw@gmail.com";
-        window.location.href = "mailto:" + recipient + "?subject=" + encodeURIComponent(mailSubject) + "&body=" + encodeURIComponent(mailBody);
-      });
-    }
-
     const savedLanguage = localStorage.getItem("dinghe-language") || "zh";
     languageSelect.value = savedLanguage;
     applyLanguage(savedLanguage);
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("sent") === "1") {
+      const formStatus = document.querySelector("[data-form-status]");
+      if (formStatus) formStatus.classList.add("is-visible");
+    }
   </script>
 </body>
 </html>
